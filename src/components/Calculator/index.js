@@ -7,6 +7,7 @@ import CalculatorScreen from "../CalculatorScreen"
 let Calculator = styled.div`
     background-color: black;
     width: 80%;
+    max-width: 968px;
     margin: 0 auto;
     padding: 20px 10px;
 `
@@ -18,13 +19,12 @@ let CalculatorBody = styled.div`
 let Numbers = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     flex-grow: 1;
 `
 let Operations = styled.div`
-    > * {
-        display: block;
-    }
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
 `
 
 export default (props) => {
