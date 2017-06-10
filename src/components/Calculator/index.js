@@ -3,23 +3,26 @@ import styled, { keyframes } from "styled-components"
 
 import CalculatorButton from "../CalculatorButton"
 import CalculatorScreen from "../CalculatorScreen"
+import ScreenCursorNavButtons from "../ScreenCursorNavButton"
 
 let Calculator = styled.div`
     border-radius: 8px;
     background-color: #0c0c0c;
     padding: 1em;
     box-shadow: 4px 5px #676565;
-    font-size: 20px;
+    font-size: 2.5vmin;
 `
 let CalculatorBody = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0 -.5em;
 `
 let Row = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1em;
+    position: relative;
 `
 let Column = styled.div`
     display: flex; 
@@ -29,10 +32,16 @@ let EmptySpace = styled(CalculatorButton)`
     background: transparent;
     border: none;
     outline: none;
+    box-shadow: none;
+`
+let ScreenNavigationButtons = styled.div`
+    flex: 1 1 auto;
+    height: 100%;
+    width: 30%;
 `
 export default (props) => {
     let yellow = "yellow"
-    let black = "black"
+    let black = "#1d1d1d"
     let teal = "teal"
     let blue = "blue"
     let white = "white";
@@ -42,7 +51,7 @@ export default (props) => {
             <CalculatorScreen />
             <CalculatorBody>
                 <Row>
-                    <Column style={{flex: "1 1 80%"}}>
+                    <Column style={{flex: "1 1 80%", zIndex: "1"}}>
                         <Row>
                             <CalculatorButton bg={yellow}>2nd</CalculatorButton>
                             <CalculatorButton bg={black}>MODE</CalculatorButton>
@@ -58,7 +67,16 @@ export default (props) => {
                             <EmptySpace />                            
                         </Row>
                     </Column>
-                    
+                    <Row style={{position: "absolute", top:0, left: 0, height:"100%", width:"100%"}}>
+                        <div style={{flex: "1 1 65%"}}>
+                            
+                        </div>                            
+                        
+                        <ScreenNavigationButtons>
+                            <ScreenCursorNavButtons />
+                        </ScreenNavigationButtons>
+                    </Row>
+
                 </Row>
                 <Row>
                     <CalculatorButton bg={black}>MATH</CalculatorButton>

@@ -1,6 +1,16 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 
+let boxShadow = "1px 4px lightgray"
+
+let ButtonPressedAnimation = keyframes`
+    50% {
+        box-shadow: 0 0 black;
+    }
+    100% {
+        box-shadow: ${boxShadow};
+    }
+`
 let CalculatorButton = styled.button`
     font-size: inherit;
     display: flex;
@@ -13,7 +23,17 @@ let CalculatorButton = styled.button`
     border: solid thin #ffffff;
     box-sizing: border-box;
     padding: 3px 0;
+    margin: 0 .5em;
     min-width: 3.6em;
+    
+    transition: all .7s ease-in-out;
+
+    &:focus {
+        outline: none;
+        animation: ${ButtonPressedAnimation} 1s ease-in-out;
+    }
+
+    box-shadow: ${boxShadow};
 `
 
 export default CalculatorButton
