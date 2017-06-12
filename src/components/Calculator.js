@@ -1,16 +1,25 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
 import { reduxForm } from "redux-form"
 
-import CalculatorButton from "../CalculatorButton"
-import CalculatorScreen from "../CalculatorScreen"
-import ScreenCursorNavButtons from "../ScreenCursorNavButton"
+import CalculatorButton from "./CalculatorButton"
+import CalculatorScreen from "./CalculatorScreen"
+import CalculatorNavigationButtonGroup from "./CalculatorNavigationButtonGroup"
+
+import * as calculatorScreenActions from "../redux/CalculatorScreen"
 
 let CalculatorContainer = styled.div`
     border-radius: 8px;
-    background-color: #0c0c0c;
+    background-color: #262626;
     padding: 1em;
-    box-shadow: 4px 5px #676565;
+    box-shadow: -5px -5px #1a1a1a,
+                -5px 5px #1a1a1a, 
+                -11px 0px #1a1a1a, 
+                -11px 3px #1a1a1a, 
+                -11px -3px #1a1a1a, 
+                -17px 0px #0d0d0d;
     font-size: 2.5vmin;
 `
 let CalculatorBody = styled.div`
@@ -40,12 +49,12 @@ let ScreenNavigationButtonsContainer = styled.div`
     height: 100%;
     width: 30%;
 `
-class Calculator extends React.Component {
+class Calculator extends React.Component {  
     handleButtonClick(e) {
         let target = e.target
-        console.log(target.type)
+        console.log(this.props)
         let buttonJustClicked = target.textContent
-        this.props.change("calculatorScreen", buttonJustClicked)
+        this.props.pressCalculatorButton(target.textContent)
         console.log(buttonJustClicked)
     }
     render() {
@@ -56,10 +65,11 @@ class Calculator extends React.Component {
         let white = "white"
         
         console.log("props:", this.props)
+        let characters = this.props.calculatorScreen.get("characters")
 
         return (
             <CalculatorContainer>
-                <CalculatorScreen name="calculatorScreen" component="input" onChange={(e) => e.preventDefault()} />
+                <CalculatorScreen name="calculatorScreen" component="input" onChange={(e) => e.preventDefault()} characters={characters} />
                 <CalculatorBody>
                     <Row>
                         <Column style={{flex: "1 1 80%", zIndex: "1"}}>
@@ -84,7 +94,7 @@ class Calculator extends React.Component {
                             </div>                            
                             
                             <ScreenNavigationButtonsContainer>
-                                <ScreenCursorNavButtons onClick={this.handleButtonClick.bind(this)}/>
+                                <CalculatorNavigationButtonGroup onClick={this.handleButtonClick.bind(this)}/>
                             </ScreenNavigationButtonsContainer>
                         </Row>
 
@@ -143,6 +153,7 @@ class Calculator extends React.Component {
         )
     }
 }
+
 
 export default reduxForm({
     form: "calculator"

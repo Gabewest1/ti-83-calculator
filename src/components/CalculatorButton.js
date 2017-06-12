@@ -28,9 +28,9 @@ let CalculatorButton = styled.button`
     
     transition: all .7s ease-in-out;
 
+    animation: ${ButtonPressedAnimation} 1s ease-in-out;
     &:focus {
         outline: none;
-        animation: ${ButtonPressedAnimation} 1s ease-in-out;
     }
 
     box-shadow: ${boxShadow};

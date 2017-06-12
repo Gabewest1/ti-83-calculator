@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import CalculatorButton from "../CalculatorButton"
+import CalculatorButton from "./CalculatorButton"
 
 //I should fix the z-index issue and needing to remove the margin
 let ScreenCursorNavButton = styled(CalculatorButton)`
