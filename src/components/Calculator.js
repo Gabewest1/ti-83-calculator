@@ -62,10 +62,17 @@ class Calculator extends React.Component {
         
         console.log("props:", this.props)
         let characters = this.props.characters
-
+        let content = this.props.calculatorScreen.get("content")
+        console.log("content:", content)
         return (
             <CalculatorContainer>
-                <CalculatorScreen name="calculatorScreen" component="input" onChange={(e) => e.preventDefault()} characters={characters} />
+                <CalculatorScreen 
+                    name="calculatorScreen" 
+                    component="input" 
+                    onChange={(e) => e.preventDefault()} 
+                    characters={characters}
+                    content={content}
+                />
                 <CalculatorBody>
                     <Row>
                         <Column style={{flex: "1 1 80%", zIndex: "1"}}>
