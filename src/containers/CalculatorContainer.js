@@ -17,8 +17,7 @@ class CalculatorContainer {
 function mapStateToProps(state) {
     console.log(state)
     return {
-        calculator: state.calculator,
-        characters: calculatorSelectors.selectNumCharacters(state.calculatorScreen)
+        calculatorScreen: state.calculatorScreen,
     }
 }
 
