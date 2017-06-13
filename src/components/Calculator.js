@@ -8,8 +8,6 @@ import CalculatorButton from "./CalculatorButton"
 import CalculatorScreen from "./CalculatorScreen"
 import CalculatorNavigationButtonGroup from "./CalculatorNavigationButtonGroup"
 
-import * as calculatorScreenActions from "../redux/CalculatorScreen"
-
 let CalculatorContainer = styled.div`
     border-radius: 8px;
     background-color: #262626;
@@ -52,10 +50,8 @@ let ScreenNavigationButtonsContainer = styled.div`
 class Calculator extends React.Component {  
     handleButtonClick(e) {
         let target = e.target
-        console.log(this.props)
         let buttonJustClicked = target.textContent
-        this.props.pressCalculatorButton(target.textContent)
-        console.log(buttonJustClicked)
+        this.props.handleButtonClick(target.textContent)
     }
     render() {
         let yellow = "yellow"
@@ -65,7 +61,7 @@ class Calculator extends React.Component {
         let white = "white"
         
         console.log("props:", this.props)
-        let characters = this.props.calculatorScreen.get("characters")
+        let characters = this.props.characters
 
         return (
             <CalculatorContainer>

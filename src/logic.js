@@ -1,9 +1,7 @@
-import * as calculatorScreenLogic from "./redux/CalculatorScreen/logic"
-import * as calculatorButtonLogic from "./redux/CalculatorButton/logic"
+import * as calculatorLogic from "./redux/Calculator/logic"
 
 let logic = {
-    ...calculatorButtonLogic,
-    ...calculatorScreenLogic,
+    ...calculatorLogic,
 }
 
 let arrLogic = []

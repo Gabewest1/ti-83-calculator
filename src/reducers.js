@@ -1,8 +1,8 @@
 //Import your reducers and add them to the rootReducer
-import calculatorScreen from "./redux/CalculatorScreen"
+import {default as calculator} from "./redux/Calculator"
 
 const rootReducer = {
-    calculatorScreen
+    ...calculator
 }
 
 export default rootReducer

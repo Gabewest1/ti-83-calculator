@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 
 import Calculator from "../components/Calculator"
 
-import * as calculatorScreenActions from "../redux/CalculatorScreen"
+import {operations as calculatorActions, selectors as calculatorSelectors} from "../redux/Calculator"
 
 class CalculatorContainer {
     render() {
@@ -15,13 +15,15 @@ class CalculatorContainer {
 }
 
 function mapStateToProps(state) {
+    console.log(state)
     return {
-        calculatorScreen: state.calculatorScreen
+        calculator: state.calculator,
+        characters: calculatorSelectors.selectNumCharacters(state.calculatorScreen)
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    let actions = {...calculatorScreenActions}
+    let actions = {...calculatorActions}
 
     return bindActionCreators({...actions}, dispatch)
 }
