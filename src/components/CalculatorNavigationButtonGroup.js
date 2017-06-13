@@ -12,27 +12,32 @@ let ScreenCursorNavButton = styled(CalculatorButton)`
     min-width: auto;
     z-index: 2;
     margin: 0;
+    border: none;
 `
 
 let UpCursorButton = styled(ScreenCursorNavButton)`
     height: 1.5em;
     width: 3em;
     border-radius: 135% 135% 150% 150%;    
+    box-shadow: 0px 3px lightgray;
 `
 let RightCursorButton = styled(ScreenCursorNavButton)`
     width: 1.5em;
     height: 3em;
     border-radius: 150% 150% 135% 135%;    
+    box-shadow: -1px 0px lightgray;    
 `
 let DownCursorButton = styled(ScreenCursorNavButton)`
     height: 1.5em;
     width: 3em;
     border-radius: 135% 135% 150% 150%;  
+    box-shadow: 0px 2px lightgray;        
 `
 let LeftCursorButton = styled(ScreenCursorNavButton)`
     width: 1.5em;
     height: 3em;  
-    border-radius: 150% 150% 135% 135%;    
+    border-radius: 150% 150% 135% 135%;   
+    box-shadow: 2px 1px lightgray;             
 `
 //Default Triangle points right
 let Triangle = styled.div`
@@ -53,8 +58,9 @@ let Triangle = styled.div`
 
 let Group = styled.div`
     position: relative;
-    width: 100%;
-    height: 100%;
+    top: -6%;
+    width: 78%;
+    height: 102%;
 `
 
 export default (props) => {
