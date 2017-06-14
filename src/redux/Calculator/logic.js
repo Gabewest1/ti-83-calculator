@@ -24,9 +24,17 @@ export const handleCalculatorButtonClick = createLogic({
             case "enter": {
                 let state = getState().calculatorScreen
                 let question = selectors.selectQuestion(state)
-                let answer = executeStatement(question)
-                next(actions.createStatement(question, answer))
-                break
+
+                try {
+                    let answer = executeStatement(question)
+                    next(actions.createStatement(question, answer))
+                } catch(e) {
+                    console.log(e)
+                    next(action)
+                } finally {
+                    break
+                }
+
             }
             default:
                 next(action)
