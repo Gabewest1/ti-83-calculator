@@ -15,9 +15,9 @@ class CalculatorContainer {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         calculatorScreen: state.calculatorScreen,
+        statements: calculatorSelectors.selectStatements(state.calculatorScreen)
     }
 }
 

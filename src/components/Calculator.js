@@ -1,8 +1,5 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
-import { bindActionCreators } from "redux"
-import { connect } from "react-redux"
-import { reduxForm } from "redux-form"
 
 import CalculatorButton from "./CalculatorButton"
 import CalculatorScreen from "./CalculatorScreen"
@@ -47,7 +44,7 @@ let ScreenNavigationButtonsContainer = styled.div`
     height: 100%;
     width: 30%;
 `
-class Calculator extends React.Component {  
+export default class Calculator extends React.Component {  
     handleButtonClick(e) {
         let target = e.target
         let buttonJustClicked = target.textContent
@@ -60,18 +57,14 @@ class Calculator extends React.Component {
         let blue = "blue"
         let white = "white"
         
-        console.log("props:", this.props)
-        let characters = this.props.characters
-        let content = this.props.calculatorScreen.get("content")
+        let { statements } = this.props
+        let question = this.props.calculatorScreen.get("question")
 
         return (
             <CalculatorContainer>
                 <CalculatorScreen 
-                    name="calculatorScreen" 
-                    component="input" 
-                    onChange={(e) => e.preventDefault()} 
-                    characters={characters}
-                    content={content}
+                    question={question}
+                    statements={statements}
                 />
                 <CalculatorBody>
                     <Row>
@@ -156,8 +149,3 @@ class Calculator extends React.Component {
         )
     }
 }
-
-
-export default reduxForm({
-    form: "calculator"
-})(Calculator)

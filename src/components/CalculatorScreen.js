@@ -1,10 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form"
+import Cursor from "./CalculatorCursor"
+import CalculatorAnswer from "./CalculatorAnswer"
+import CalculatorQuestion from "./CalculatorQuestion"
 
 let Screen = styled.div`
-    display:flex;
-    flex-wrap;
+    overflow: hidden;
     position: relative;
     background-color: gray;
     height: 6em;
@@ -17,17 +19,20 @@ let Screen = styled.div`
     box-sizing: border-box;
     word-wrap: break-word;
 `
-let Cursor = styled.span`
-    display: inline-block;
-    background-color: #1a1a1a;
-    width: .7em;
-    height: 1.1em;
-    position: relative;
-    top:3px;
+let HideScrollBar = styled.div`
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 100px; //pushes scrollbar out of sight
 `
-let TextContent = styled.span`
+
+let CurrentQuestion = styled.span`
     max-width: 100%;
     word-wrap: break-word;
+`
+
+let Statement = styled.div`
+    width: 100%;
 `
 
 export default class CalculatorScreen extends React.Component {
@@ -60,13 +65,27 @@ export default class CalculatorScreen extends React.Component {
         }
     }
     render() {
-        console.log("Rendering")
+        let statements = this.props.statements.map((statement, i) => {
+            return (
+                <Statement key={i}>
+                    <CalculatorQuestion>
+                        {statement.question}
+                    </CalculatorQuestion>
+                    <CalculatorAnswer>
+                        {statement.answer}
+                    </CalculatorAnswer>
+                </Statement> 
+            )
+        })
         return (
             <Screen {...this.props}>
-                <TextContent>
-                    {this.props.content}
-                    <Cursor />
-                </TextContent>
+                <HideScrollBar>
+                    { statements }
+                    <CurrentQuestion>
+                        {this.props.question}
+                        <Cursor />
+                    </CurrentQuestion>
+                </HideScrollBar>
             </Screen>
         )
     }

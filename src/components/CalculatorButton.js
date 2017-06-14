@@ -28,7 +28,8 @@ let CalculatorButton = styled.button`
     
     transition: all .7s ease-in-out;
 
-    animation: ${ButtonPressedAnimation} 1s ease-in-out;
+    ${(props) => props.pressAnimation && `animation: ${ButtonPressedAnimation} 1s ease-in-out`};
+
     &:focus {
         outline: none;
     }
