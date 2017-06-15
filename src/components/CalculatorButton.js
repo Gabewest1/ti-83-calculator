@@ -11,7 +11,7 @@ let ButtonPressedAnimation = keyframes`
         box-shadow: ${boxShadow};
     }
 `
-let CalculatorButton = styled.button`
+let Button = styled.button`
     font-size: inherit;
     display: flex;
     flex: 0 1 auto;
@@ -28,7 +28,7 @@ let CalculatorButton = styled.button`
     
     transition: all .7s ease-in-out;
 
-    ${(props) => props.pressAnimation && `animation: ${ButtonPressedAnimation} 1s ease-in-out`};
+    ${(props) => props.isClicked && `animation: ${ButtonPressedAnimation} 1s ease-in-out`};
 
     &:focus {
         outline: none;
@@ -37,4 +37,28 @@ let CalculatorButton = styled.button`
     box-shadow: ${boxShadow};
 `
 
-export default CalculatorButton
+export default class CalculatorButton extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isClicked: false
+        }
+    }
+    handleClick(e, onClick) {
+        console.log(onClick)
+        this.setState({isClicked: true})
+        onClick(e)
+    }
+    render() {
+        let { onClick } = this.props
+
+        return (
+            <Button 
+                {...this.props} 
+                onClick={(e) => this.handleClick(e, onClick)} 
+                isClicked={this.state.isClicked} 
+                onAnimationEnd={() => this.setState({isClicked: false})}
+            />
+        )
+    }
+}
