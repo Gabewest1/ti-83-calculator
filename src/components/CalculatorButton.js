@@ -45,7 +45,6 @@ export default class CalculatorButton extends React.Component {
         }
     }
     handleClick(e, onClick) {
-        console.log(onClick)
         this.setState({isClicked: true})
         onClick(e)
     }
