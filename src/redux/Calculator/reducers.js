@@ -8,6 +8,11 @@ const initialCalculatorScreenState = fromJS({
     previousAnswers: []
 })
 
+const initialCurrentLineState = fromJS({
+    currentLineText: "",
+    cursorIndex: 0
+})
+
 const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     [types.ADD_CHARACTER]: (state, action) => {
         console.log("Appending new character")

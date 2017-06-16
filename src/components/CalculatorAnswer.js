@@ -10,11 +10,18 @@ let Answer = styled.span`
 `
 
 export default class CalculatorAnswer extends React.Component {
+    constructor(props) {
+        super(props)
+        window.addEventListener("scroll", this.setAnswerContainerHeight)
+    }
     componentDidMount() {
+        this.setAnswerContainerHeight()
+    }
+    setAnswerContainerHeight = () => {
         //The AnswerContainer doesn't start with a height b/c its children
-        //are out of the normal flow, so need to find the tallest child and set 
+        //are out of the normal flow, so we need to find the tallest child and set 
         //that to the containers height
-        
+        console.log("setting answer container height")
         let answerContainers = document.getElementsByName("AnswerContainer")
         let thisAnswerContainer = answerContainers[answerContainers.length-1]
         let children = thisAnswerContainer.children

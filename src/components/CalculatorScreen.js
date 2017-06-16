@@ -9,7 +9,8 @@ let Screen = styled.div`
     overflow: hidden;
     position: relative;
     background-color: gray;
-    height: 6em;
+    height: 9em;
+    width: 100%;
     border-right: 1px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
     border-left: 1px solid #000;
@@ -50,19 +51,15 @@ export default class CalculatorScreen extends React.Component {
     }
     removeAndSetMaxWidth = () => {
         let screen = this.getScreenDomElement()
-        screen.style.maxWidth = "10000px"
+        screen.style.maxWidth = "100%"
         console.log("maxWidth: ", screen.style.maxWidth)
         setTimeout(this.setScreensMaxWidth, 100)
     }
     setScreensMaxWidth = () => {
         let screen = this.getScreenDomElement()        
-        if(!screen) {
-            setTimeout(this.setScreensMaxWidth, 100)
-        } else {
-            let width = window.getComputedStyle(screen, null).getPropertyValue("width")
-            console.log("screen width:", width)
-            screen.style.maxWidth = width
-        }
+        let width = window.getComputedStyle(screen, null).getPropertyValue("width")
+        console.log("screen width:", width)
+        screen.style.maxWidth = width
     }
     render() {
         let statements = this.props.statements.map((statement, i) => {
@@ -78,7 +75,7 @@ export default class CalculatorScreen extends React.Component {
             )
         })
         return (
-            <Screen {...this.props}>
+            <Screen {...this.props} name="calculatorScreen">
                 <HideScrollBar>
                     { statements }
                     <CurrentQuestion>
