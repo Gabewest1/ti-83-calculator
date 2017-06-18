@@ -45,11 +45,6 @@ let ScreenNavigationButtonsContainer = styled.div`
     width: 30%;
 `
 export default class Calculator extends React.Component {  
-    handleButtonClick(e) {
-        let target = e.target
-        let buttonJustClicked = target.textContent
-        this.props.handleButtonClick(target.textContent)
-    }
     render() {
         let yellow = "yellow"
         let black = "#1d1d1d"
@@ -57,29 +52,28 @@ export default class Calculator extends React.Component {
         let blue = "blue"
         let white = "white"
         
-        let { statements } = this.props
-        let question = this.props.calculatorScreen.get("question")
-
+        let { isPowerOn, statements } = this.props
+        
         return (
             <CalculatorContainer>
                 <CalculatorScreen 
-                    question={question}
                     statements={statements}
+                    isPowerOn={isPowerOn}
                 />
                 <CalculatorBody>
                     <Row>
                         <Column style={{flex: "1 1 80%", zIndex: "1"}}>
                             <Row>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={yellow}>2nd</CalculatorButton>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>MODE</CalculatorButton>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>DEL</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={yellow}>2nd</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={black}>MODE</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={black}>DEL</CalculatorButton>
                                 <EmptySpace />
                                 <EmptySpace />
                             </Row>
                             <Row style={{marginBottom: 0}}>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={teal}>ALPHA</CalculatorButton>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>X,T,&theta;,n</CalculatorButton>
-                                <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>STAT</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={teal}>ALPHA</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={black}>X,T,&theta;,n</CalculatorButton>
+                                <CalculatorButton onClick={this.props.onClick} bg={black}>STAT</CalculatorButton>
                                 <EmptySpace />
                                 <EmptySpace />                            
                             </Row>
@@ -90,59 +84,59 @@ export default class Calculator extends React.Component {
                             </div>                            
                             
                             <ScreenNavigationButtonsContainer>
-                                <CalculatorNavigationButtonGroup onClick={this.handleButtonClick.bind(this)}/>
+                                <CalculatorNavigationButtonGroup onClick={this.props.onClick}/>
                             </ScreenNavigationButtonsContainer>
                         </Row>
 
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>MATH</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>APPS</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>PRGM</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>VARS</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>CLEAR</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>MATH</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>APPS</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>PRGM</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>VARS</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>CLEAR</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>X-&sup1;</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>SIN</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>COS</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>TAN</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>^</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>X-&sup1;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>SIN</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>COS</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>TAN</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>^</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>X&sup2;</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>,</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>(</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>)</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>&divide;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>X&sup2;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>,</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>(</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>)</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>&divide;</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>LOG</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>7</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>8</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>9</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>&times;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>LOG</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>7</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>8</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>9</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>&times;</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>LN</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>4</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>5</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>6</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>-</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>LN</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>4</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>5</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>6</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>-</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>STO</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>1</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>2</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>3</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>+</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>STO</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>1</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>2</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>3</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>+</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={black}>ON</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>0</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>.</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={white}>(-)</CalculatorButton>
-                        <CalculatorButton onClick={this.handleButtonClick.bind(this)} bg={blue}>ENTER</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>ON</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>0</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>.</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={white}>(-)</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={blue}>ENTER</CalculatorButton>
                     </Row>
                 </CalculatorBody>
             </CalculatorContainer>
