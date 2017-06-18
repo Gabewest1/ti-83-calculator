@@ -1,29 +1,16 @@
-import createReducer from "../utils/createReducer"
+import createReducer from "../Utils/createReducer"
+import { combineReducers } from "redux"
 import { fromJS } from "immutable"
 import types from "./types"
 
 const initialCalculatorScreenState = fromJS({
-    question: "",
+    statements: [],
     previousQuestions: [],
     previousAnswers: []
 })
-
-const initialCurrentLineState = fromJS({
-    currentLineText: "",
-    cursorIndex: 0
-})
-
 const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
-    [types.ADD_CHARACTER]: (state, action) => {
-        console.log("Appending new character")
-        let { character } = action
-        return state.update("question", (question) => question + character)
-    },
     [types.CLEAR_SCREEN]: (state, action) => {
-        return state.set("question", "")
-    },
-    [types.BUTTON_CLICK_ANIMATION_STARTED]: (state, action) => {
-        return state
+        return state.update("statements", (statements) => statements.clear())
     },
     [types.SAVE_ANSWER]: (state, action) => {
         let { answer } = action
@@ -35,11 +22,24 @@ const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
 
         return state.update("previousQuestions", (previousQuestions) => previousQuestions.push(question))
     },
-    [types.CLEAR_LINE]: (state, action) => {
-        return state.set("question", "")
+    [types.CREATE_STATEMENT]: (state, action) => {
+        let { question, answer } = action
+        
+        return state.update("statements", (statements) => statements.push({question, answer}))
     }
+})
+
+const calculatorPowerInitialState = fromJS({
+    isPowerOn: true,
+})
+const calculatorPowerReducer = createReducer(calculatorPowerInitialState)({
+    [types.TOGGLE_POWER]: (state, action) => {
+        console.log("is the reducer changin the power state")
+        return state.update("isPowerOn", (isPowerOn) => !isPowerOn)
+    }   
 })
 
 export default {
     calculatorScreen: calculatorScreenReducer,
+    calculatorPower: calculatorPowerReducer,
 }
