@@ -66,16 +66,16 @@ let Group = styled.div`
 export default (props) => {
     return (
         <Group>
-            <UpCursorButton onClick={props.onClick} style={{top:0, left:"50%", transform: "translateX(-50%)"}}>
+            <UpCursorButton navigation={true} onClick={props.onClick} style={{top:0, left:"50%", transform: "translateX(-50%)"}}>
                 <Triangle direction={"up"} />
             </UpCursorButton>
-            <RightCursorButton onClick={props.onClick} style={{top:"50%", right: 0, transform: "translateY(-50%)"}}>
+            <RightCursorButton navigation={true} onClick={props.onClick} style={{top:"50%", right: 0, transform: "translateY(-50%)"}}>
                 <Triangle direction={"right"} />
             </RightCursorButton>
-            <DownCursorButton onClick={props.onClick} style={{bottom:0, left:"50%", transform: "translateX(-50%)"}}>
+            <DownCursorButton navigation={true} onClick={props.onClick} style={{bottom:0, left:"50%", transform: "translateX(-50%)"}}>
                 <Triangle direction={"down"} />
             </DownCursorButton>
-            <LeftCursorButton onClick={props.onClick} style={{top:"50%", left: 0, transform: "translateY(-50%)"}}>
+            <LeftCursorButton navigation={true} onClick={props.onClick} style={{top:"50%", left: 0, transform: "translateY(-50%)"}}>
                 <Triangle direction={"left"} />
             </LeftCursorButton>
         </Group>
