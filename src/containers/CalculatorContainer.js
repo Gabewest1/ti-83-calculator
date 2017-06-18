@@ -8,10 +8,12 @@ import {operations as calculatorActions, selectors as calculatorSelectors} from 
 
 class CalculatorContainer extends React.Component {
     handleButtonClick = (e) => {
-        let button = e.target
-        let isNavigationButton = button.getAttribute("navigation")
+        let button = e.currentTarget
+        let isNavigationButton = button.getAttribute("data-buttonType") === "navigation"
         console.log(button)
         console.log("isNavigationButton:", isNavigationButton)
+        // for(var prop in button) console.log(prop)
+        console.log(button.attributes)
         if(isNavigationButton) {
             console.log("Passing on to the navigation method")
             this.handleNavigationButtonClick(button)

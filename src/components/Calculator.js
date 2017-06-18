@@ -38,6 +38,7 @@ let EmptySpace = styled(CalculatorButton)`
     border: none;
     outline: none;
     box-shadow: none;
+    pointer-events: none;
 `
 let ScreenNavigationButtonsContainer = styled.div`
     flex: 1 1 auto;
@@ -84,7 +85,7 @@ export default class Calculator extends React.Component {
                             </div>                            
                             
                             <ScreenNavigationButtonsContainer>
-                                <CalculatorNavigationButtonGroup onClick={this.props.onClick}/>
+                                <CalculatorNavigationButtonGroup navigation={true} onClick={this.props.onClick}/>
                             </ScreenNavigationButtonsContainer>
                         </Row>
 

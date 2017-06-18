@@ -66,16 +66,16 @@ let Group = styled.div`
 export default (props) => {
     return (
         <Group>
-            <UpCursorButton navigation={true} onClick={props.onClick} style={{top:0, left:"50%", transform: "translateX(-50%)"}}>
+            <UpCursorButton data-buttonType={"navigation"} onClick={props.onClick} style={{top:0, left:"50%", transform: "translateX(-50%)"}}>
                 <Triangle direction={"up"} />
             </UpCursorButton>
-            <RightCursorButton navigation={true} onClick={props.onClick} style={{top:"50%", right: 0, transform: "translateY(-50%)"}}>
+            <RightCursorButton data-buttonType={"navigation"} onClick={props.onClick} style={{top:"50%", right: 0, transform: "translateY(-50%)"}}>
                 <Triangle direction={"right"} />
             </RightCursorButton>
-            <DownCursorButton navigation={true} onClick={props.onClick} style={{bottom:0, left:"50%", transform: "translateX(-50%)"}}>
+            <DownCursorButton data-buttonType={"navigation"} onClick={props.onClick} style={{bottom:0, left:"50%", transform: "translateX(-50%)"}}>
                 <Triangle direction={"down"} />
             </DownCursorButton>
-            <LeftCursorButton navigation={true} onClick={props.onClick} style={{top:"50%", left: 0, transform: "translateY(-50%)"}}>
+            <LeftCursorButton data-buttonType={"navigation"} onClick={props.onClick} style={{top:"50%", left: 0, transform: "translateY(-50%)"}}>
                 <Triangle direction={"left"} />
             </LeftCursorButton>
         </Group>
