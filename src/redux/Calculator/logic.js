@@ -47,6 +47,10 @@ export const handleCalculatorButtonClick = createLogic({
                 let state = getState().currentLine
                 let question = currentLineSelectors.selectCurrentLine(state)
 
+                if(question === "") {
+                    break
+                }
+
                 try {
                     let answer = executeStatement(question)
                     next(actions.createStatement(question, answer))
