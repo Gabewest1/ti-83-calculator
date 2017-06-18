@@ -44,17 +44,17 @@ export default class CalculatorButton extends React.Component {
             isClicked: false
         }
     }
-    handleClick(e, onClick) {
+    handleClick(e, onClickFromProps) {
         this.setState({isClicked: true})
-        onClick(e)
+        onClickFromProps(e)
     }
     render() {
-        let { onClick } = this.props
+        let onClickFromProps = this.props.onClick
 
         return (
             <Button 
                 {...this.props} 
-                onClick={(e) => this.handleClick(e, onClick)} 
+                onClick={(e) => this.handleClick(e, onClickFromProps)} 
                 isClicked={this.state.isClicked} 
                 onAnimationEnd={() => this.setState({isClicked: false})}
             />
