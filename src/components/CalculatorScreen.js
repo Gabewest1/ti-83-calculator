@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form"
-import Cursor from "./CalculatorCursor"
+import CurrentLineContainer from "../containers/CurrentLineContainer"
 import CalculatorAnswer from "./CalculatorAnswer"
 import CalculatorQuestion from "./CalculatorQuestion"
 
@@ -62,7 +62,9 @@ export default class CalculatorScreen extends React.Component {
         screen.style.maxWidth = width
     }
     render() {
-        let statements = this.props.statements.map((statement, i) => {
+        let { isPowerOn, statements } = this.props
+        console.log("isPowerOn:", isPowerOn)
+        statements = statements.map((statement, i) => {
             return (
                 <Statement key={i}>
                     <CalculatorQuestion>
@@ -74,16 +76,22 @@ export default class CalculatorScreen extends React.Component {
                 </Statement> 
             )
         })
-        return (
-            <Screen {...this.props} name="calculatorScreen">
-                <HideScrollBar>
-                    { statements }
-                    <CurrentQuestion>
-                        {this.props.question}
-                        <Cursor />
-                    </CurrentQuestion>
-                </HideScrollBar>
-            </Screen>
-        )
+
+        if(isPowerOn) {
+            return (
+                <Screen {...this.props} name="calculatorScreen">
+                    <HideScrollBar>
+                        { statements }
+                        <CurrentLineContainer />
+                    </HideScrollBar>
+                </Screen>
+            )
+        } else {
+            return (
+                <Screen {...this.props} name="calculatorScreen">
+
+                </Screen>
+            )
+        }
     }
 }
