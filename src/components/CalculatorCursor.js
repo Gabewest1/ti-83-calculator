@@ -6,9 +6,14 @@ let blinkingAnimation = keyframes`
         opacity: 0;
     }
 `
-let Cursor = styled.span`
+let Cursor = styled.div`
     display: inline-block;
-    background-color: #1a1a1a;
+    background-image: url(${
+        (props) => props.secondMode ? "cursor--2nd.png" :
+                   props.alphaMode ? "cursor--alpha.png" :
+                   "cursor.png"
+        });
+    background-size: 100% 100%;
     width: .7em;
     height: 1.1em;
     position: relative;
@@ -24,14 +29,15 @@ let Container = styled.div`
 `
 
 export default (props) => {
-    let { characters, position } = props
+    let { characters, position, secondMode, alphaMode } = props
     let firstHalfOfText = characters.substring(0, position)
     let secondHalfOfText = characters.substring(position+1)
 
+    console.log("MODES:", secondMode, alphaMode)
     return (
         <Container>
             {firstHalfOfText}
-            <Cursor />
+            <Cursor secondMode={secondMode} alphaMode={alphaMode} />
             {secondHalfOfText}
         </Container>
     )

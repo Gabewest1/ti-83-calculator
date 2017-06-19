@@ -41,7 +41,7 @@ function mapStateToProps(state) {
         statements: calculatorSelectors.selectStatements(state.calculatorScreen),
         isPowerOn: calculatorSelectors.selectPowerStatus(state.calculatorPower),
         isInSecondMode: calculatorSelectors.selectSecondModeStatus(state.calculatorMode),
-        isInAplhaMode: calculatorSelectors.selectAlphaModeStatus(state.calculatorMode),
+        isInAlphaMode: calculatorSelectors.selectAlphaModeStatus(state.calculatorMode),
     }
 }
 

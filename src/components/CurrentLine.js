@@ -14,14 +14,19 @@ let TextWrapper = styled.div`
 
 export default class CurrentLine extends React.Component {
     render() {
-        let { cursorIndex, currentLineText } = this.props
+        let { cursorIndex, currentLineText, isInSecondMode, isInAlphaMode } = this.props
 
         return (
             <Container>
                 <TextWrapper>
                     {currentLineText}
                 </TextWrapper>
-                <CalculatorCursor characters={currentLineText} position={cursorIndex}/>
+                <CalculatorCursor 
+                    characters={currentLineText} 
+                    position={cursorIndex}
+                    secondMode={isInSecondMode}
+                    alphaMode={isInAlphaMode}    
+                />
             </Container>
         )
     }

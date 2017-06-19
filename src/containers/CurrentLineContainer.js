@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import CurrentLine from "../components/CurrentLine"
 
 import {operations as currentLineActions, selectors as currentLineSelectors} from "../redux/CurrentLine"
+import {operations as calculatorActions, selectors as calculatorSelectors} from "../redux/Calculator"
 
 class CurrentLineContainer extends React.Component {
     render() {
@@ -17,7 +18,9 @@ class CurrentLineContainer extends React.Component {
 function mapStateToProps(state) {
     return {
         currentLineText: currentLineSelectors.selectCurrentLine(state.currentLine),
-        cursorIndex: currentLineSelectors.selectCursorIndex(state.currentLine)
+        cursorIndex: currentLineSelectors.selectCursorIndex(state.currentLine),
+        isInSecondMode: calculatorSelectors.selectSecondModeStatus(state.calculatorMode),
+        isInAlphaMode: calculatorSelectors.selectAlphaModeStatus(state.calculatorMode),
     }
 }
 
