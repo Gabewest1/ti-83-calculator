@@ -1,8 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import CalculatorCuror from "./CalculatorCursor"
+import CalculatorCursor from "./CalculatorCursor"
 
-let CurrentLineContainer = styled.span`
+let Container = styled.div`
+    position: relative;
+`
+let TextWrapper = styled.div`
+    position: absolute;
+    z-index: 10;
     max-width: 100%;
     word-wrap: break-word;
 `
@@ -10,15 +15,14 @@ let CurrentLineContainer = styled.span`
 export default class CurrentLine extends React.Component {
     render() {
         let { cursorIndex, currentLineText } = this.props
-        let firstHalfOfText = currentLineText.substring(0, cursorIndex)
-        let secondHalfOfText = currentLineText.substring(cursorIndex+1)
 
         return (
-            <CurrentLineContainer>
-                {firstHalfOfText}
-                <CalculatorCuror />
-                {secondHalfOfText}
-            </CurrentLineContainer>
+            <Container>
+                <TextWrapper>
+                    {currentLineText}
+                </TextWrapper>
+                <CalculatorCursor characters={currentLineText} position={cursorIndex}/>
+            </Container>
         )
     }
 }
