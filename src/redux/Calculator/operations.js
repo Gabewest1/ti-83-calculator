@@ -2,8 +2,8 @@ import actions from "./actions"
 
 const handleButtonClick = actions.pressCalculatorButton
 const toggleCalculatorPower = actions.toggleCalculatorPower
-const toggleSecondMode = actions.toggleCalculatorPower
-const toggleAlphaMode = actions.toggleCalculatorPower
+const toggleSecondMode = actions.toggleSecondMode
+const toggleAlphaMode = actions.toggleAlphaMode
 
 export default {
     handleButtonClick,
