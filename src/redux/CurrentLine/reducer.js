@@ -13,18 +13,28 @@ const currentLineReducer = createReducer(initialCurrentLineState)({
     [types.ADD_CHARACTER]: (state, action) => {
         console.log("Appending new character")
         let { character } = action
-        let cursorIndex = state.get("cursorIndex")
+        let cursorIndex = selectors.selectCursorIndex(state)
+        let currentLineText = selectors.selectCurrentLine(state)
+        let characterToBeReplaced = currentLineText.charAt(cursorIndex)        
         let increaseCursorIndexAmount = 1
 
         //if the character is an operation, then add a space before and after it.
-        if(character.search(/[*+-/]/) !== -1) {
+        if(/[*+-/]/.test(character)) {
             character = " ".concat(character).concat(" ")
             increaseCursorIndexAmount += 2
         }
         
         return state
                 .update("currentLineText", (currentLineText) => {
-                    return currentLineText.slice(0, cursorIndex) + character + currentLineText.slice(cursorIndex)
+
+                    //if replacing an operation, remove the spaces before and after the operation
+                    //and decrease the amount of space the cursor increases by 1
+                    if(/[-+*/]/.test(characterToBeReplaced)) {
+                        increaseCursorIndexAmount--
+                        return currentLineText.slice(0, cursorIndex-1) + character + currentLineText.slice(cursorIndex+2)                        
+                    } else {
+                        return currentLineText.slice(0, cursorIndex) + character + currentLineText.slice(cursorIndex+1)
+                    }
                 })
                 .update("cursorIndex", (cursorIndex) => cursorIndex+increaseCursorIndexAmount)
     },
