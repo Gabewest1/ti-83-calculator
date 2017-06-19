@@ -10,14 +10,30 @@ import {
 
 export const handleCalculatorButtonClick = createLogic({
     type: types.BUTTON_PRESSED,
+    validate({getState, action}, next, reject) {
+        let state = getState()
+        let button = action.button.toLowerCase()
+        let isCalculatorOn = selectors.selectPowerStatus(state.calculatorPower)
+
+        if(!isCalculatorOn) {
+            if(button === "on") {
+                next(action)
+            } else {
+                reject(actions.startButtonClickAnimation(action.button))
+            }
+        } else {
+            next(action)
+        }
+    },
     process({getState, action}, dispatch, done) {
         let { button } = action
         button = button.toLowerCase()
         console.log(button)
         dispatch(actions.startButtonClickAnimation(action.button))
-
+        
         switch(button) {
             case (button.match(/^([0-9])$|^([+-\u00D7\u00F7])$|^(\(-\))$/) || {}).input: {
+
                 //Check if the button pressed is the html entity &times; or &divide;
                 //and convert it to its respective multiplication or division sign.
                 //If the button is a negative sign which looks like => `(-)` then remove
@@ -46,8 +62,14 @@ export const handleCalculatorButtonClick = createLogic({
                 break
             }
             case "enter": {
-                let state = getState().currentLine
-                let question = currentLineSelectors.selectCurrentLine(state)
+                let state = getState()
+                let question = currentLineSelectors.selectCurrentLine(state.currentLine)
+                let isSecondModeActive = selectors.selectSecondModeStatus(state.calculatorMode)
+
+                if(isSecondModeActive) {
+                    dispatch(actions.resetPreviousQuestion())
+                    break
+                }
 
                 if(question === "") {
                     break
@@ -73,7 +95,16 @@ export const handleCalculatorButtonClick = createLogic({
                 break
             }
             case "on": {
-                dispatch(actions.toggleCalculatorPower())
+                let state = getState()
+                let isCalculatorOn = selectors.selectPowerStatus(state.calculatorPower)
+                let isSecondModeActive = selectors.selectSecondModeStatus(state.calculatorMode)
+
+                if(!isCalculatorOn) {
+                    dispatch(actions.toggleCalculatorPower())                                    
+                } else if(isCalculatorOn && isSecondModeActive) {
+                    dispatch(actions.toggleCalculatorPower())                
+                }
+
                 break
             }
             case "2nd": {
@@ -96,6 +127,17 @@ export const handleCalculatorButtonClick = createLogic({
             }
             default:
                 break
+        }
+
+        //2nd and alpha should always be turned off after a new button is pressed
+        if(button !== "2nd" && button !== "alpha") {
+            let isAlphaModeActive = selectors.selectAlphaModeStatus(getState().calculatorMode)
+            let isSecondModeActive = selectors.selectSecondModeStatus(getState().calculatorMode)
+            if(isAlphaModeActive) {
+                dispatch(actions.toggleAlphaMode())
+            } else if(isSecondModeActive) {
+                dispatch(actions.toggleSecondMode())
+            }
         }
 
         done()
