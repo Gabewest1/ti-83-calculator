@@ -10,10 +10,12 @@ import {
 
 export const handleCalculatorButtonClick = createLogic({
     type: types.BUTTON_PRESSED,
-    transform({getState, action}, next, reject) {
+    process({getState, action}, dispatch, done) {
         let { button } = action
         button = button.toLowerCase()
         console.log(button)
+        dispatch(actions.startButtonClickAnimation(action.button))
+
         switch(button) {
             case (button.match(/^([0-9])$|^([+-\u00D7\u00F7])$|^(\(-\))$/) || {}).input: {
                 //Check if the button pressed is the html entity &times; or &divide;
@@ -29,16 +31,16 @@ export const handleCalculatorButtonClick = createLogic({
                 }
 
                 console.log("adding button to screen: ", button)
-                next(currentLineActions.addCharacterToScreen(button))
+                dispatch(currentLineActions.addCharacterToScreen(button))
                 break
             }
             case "clear": {
                 let shouldClearEntireScreen = currentLineSelectors.selectCursorIndex(getState().currentLine) <= 0
 
                 if(shouldClearEntireScreen) {
-                    next(actions.clearCalculatorScreen())
+                    dispatch(actions.clearCalculatorScreen())
                 } else {
-                    next(currentLineActions.clearLine())
+                    dispatch(currentLineActions.clearLine())
                 }
                 
                 break
@@ -53,30 +55,49 @@ export const handleCalculatorButtonClick = createLogic({
 
                 try {
                     let answer = executeStatement(question)
-                    next(actions.createStatement(question, answer))
+                    dispatch(actions.createStatement(question, answer))
                 } catch(e) {
                     console.log(e)
-                    next(action)
+                    dispatch(action)
                 } finally {
                     break
                 }
 
             }
             case "left": {
-                next(currentLineActions.moveCursorBackwards())
+                dispatch(currentLineActions.moveCursorBackwards())
+                break
             }
             case "right": {
-                next(currentLineActions.moveCursorForwards())
+                dispatch(currentLineActions.moveCursorForwards())
+                break
             }
             case "on": {
-                next(actions.toggleCalculatorPower())
+                dispatch(actions.toggleCalculatorPower())
+                break
+            }
+            case "2nd": {
+                let isAlphaModeActive = selectors.selectAlphaModeStatus(getState().calculatorMode)
+                if(isAlphaModeActive) {
+                    dispatch(actions.toggleAlphaMode())
+                }
+
+                dispatch(actions.toggleSecondMode())
+                break
+            }
+            case "alpha": {
+                let isSecondModeActive = selectors.selectSecondModeStatus(getState().calculatorMode)
+                if(isSecondModeActive) {
+                    dispatch(actions.toggleSecondMode())
+                }
+
+                dispatch(actions.toggleAlphaMode())
+                break
             }
             default:
-                next(action)
+                break
         }
-    },
-    process({getState, action}, dispatch, done) {
-        dispatch(actions.startButtonClickAnimation(action.button))
+
         done()
     }
 })

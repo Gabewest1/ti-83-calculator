@@ -39,7 +39,18 @@ const calculatorPowerReducer = createReducer(calculatorPowerInitialState)({
     }   
 })
 
+const calculatorModeInitialState = fromJS({
+    secondMode: false,
+    alphaMode: false,
+})
+
+const calculatorModeReducer = createReducer(calculatorModeInitialState)({
+    [types.TOGGLE_SECOND_MODE]: (state, action) => state.update("secondMode", (secondMode) => !secondMode),
+    [types.TOGGLE_ALPHA_MODE]: (state, action) => state.update("alphaMode", (alpha) => !alpha),
+})
+
 export default {
     calculatorScreen: calculatorScreenReducer,
     calculatorPower: calculatorPowerReducer,
+    calculatorMode: calculatorModeReducer,
 }

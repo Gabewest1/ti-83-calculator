@@ -8,6 +8,8 @@ const calculateAnswer = (answer) => ({ type: types.CALCULATE_ANSWER })
 const saveAnswer = (answer) => ({ type: types.SAVE_ANSWER, answer })
 const saveQuestion = (question) => ({ type: types.SAVE_QUESTION, question })
 const toggleCalculatorPower = () => ({ type: types.TOGGLE_POWER })
+const toggleSecondMode = () => ({ type: types.TOGGLE_SECOND_MODE })
+const toggleAlphaMode = () => ({ type: types.TOGGLE_ALPHA_MODE })
 
 export default {
     pressCalculatorButton,
@@ -17,4 +19,6 @@ export default {
     saveAnswer,
     saveQuestion,
     toggleCalculatorPower,
+    toggleSecondMode,
+    toggleAlphaMode,
 }

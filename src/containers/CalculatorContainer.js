@@ -40,6 +40,8 @@ function mapStateToProps(state) {
         calculatorScreen: state.calculatorScreen,
         statements: calculatorSelectors.selectStatements(state.calculatorScreen),
         isPowerOn: calculatorSelectors.selectPowerStatus(state.calculatorPower),
+        isInSecondMode: calculatorSelectors.selectSecondModeStatus(state.calculatorMode),
+        isInAplhaMode: calculatorSelectors.selectAlphaModeStatus(state.calculatorMode),
     }
 }
 
