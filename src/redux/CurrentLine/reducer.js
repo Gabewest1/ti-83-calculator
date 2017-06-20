@@ -73,6 +73,10 @@ const currentLineReducer = createReducer(initialCurrentLineState)({
         } else {
             return state
         }
+    },
+    [types.RESET_PREVIOUS_QUESTION]: (state, action) => {
+        let { question } = action
+        return state.set("currentLineText", question).set("cursorIndex", question.length)
     }
 })
 

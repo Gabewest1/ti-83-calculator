@@ -8,6 +8,8 @@ const selectStatements = (state) => state.get("statements")
 const selectPowerStatus = (state) => state.get("isPowerOn")
 const selectSecondModeStatus = (state) => state.get("secondMode")
 const selectAlphaModeStatus = (state) => state.get("alphaMode")
+const selectNumPreviousQuestions = (state) => state.get("previousQuestions").size
+const selectPreviousQuestionIndex = (state) => state.get("previousQuestionIndex")
 
 export default {
     selectNumCharacters,
@@ -18,6 +20,8 @@ export default {
     selectPowerStatus,
     selectSecondModeStatus,
     selectAlphaModeStatus,
+    selectNumPreviousQuestions,
+    selectPreviousQuestionIndex,
 }
 // const selectStatements = createSelector(
 //     selectPreviousQuestions,

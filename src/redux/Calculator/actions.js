@@ -10,6 +10,7 @@ const saveQuestion = (question) => ({ type: types.SAVE_QUESTION, question })
 const toggleCalculatorPower = () => ({ type: types.TOGGLE_POWER })
 const toggleSecondMode = () => ({ type: types.TOGGLE_SECOND_MODE })
 const toggleAlphaMode = () => ({ type: types.TOGGLE_ALPHA_MODE })
+const decrementPreviousQuestionIndex = () => ({ type: types.DECREMENT_PREVIOUS_QUESTION_INDEX })
 
 export default {
     pressCalculatorButton,
@@ -21,4 +22,5 @@ export default {
     toggleCalculatorPower,
     toggleSecondMode,
     toggleAlphaMode,
+    decrementPreviousQuestionIndex,
 }

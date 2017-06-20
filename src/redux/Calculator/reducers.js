@@ -2,11 +2,13 @@ import createReducer from "../Utils/createReducer"
 import { combineReducers } from "redux"
 import { fromJS } from "immutable"
 import types from "./types"
+import selectors from "./selectors"
 
 const initialCalculatorScreenState = fromJS({
     statements: [],
     previousQuestions: [],
-    previousAnswers: []
+    previousAnswers: [],
+    previousQuestionIndex: 0
 })
 const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     [types.CLEAR_SCREEN]: (state, action) => {
@@ -20,12 +22,18 @@ const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     [types.SAVE_QUESTION]: (state, action) => {
         let { question } = action
 
-        return state.update("previousQuestions", (previousQuestions) => previousQuestions.push(question))
+        let stateWithNewQuestion = state.update("previousQuestions", (previousQuestions) => previousQuestions.push(question))
+        let numOfQuestions = selectors.selectNumPreviousQuestions(stateWithNewQuestion)
+
+        return stateWithNewQuestion.set("previousQuestionIndex", numOfQuestions-1)
     },
     [types.CREATE_STATEMENT]: (state, action) => {
         let { question, answer } = action
         
         return state.update("statements", (statements) => statements.push({question, answer}))
+    },
+    [types.DECREMENT_PREVIOUS_QUESTION_INDEX]: (state, action) => {
+        return state.update("previousQuestionIndex", (index) => Math.max(index-1, 0))
     }
 })
 

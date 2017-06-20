@@ -2,7 +2,7 @@ import { createLogic } from "redux-logic"
 import types from "./types"
 import actions from "./actions"
 import selectors from "./selectors"
-import {operations as currentLineActions, selectors as currentLineSelectors } from "../CurrentLine"
+import {operations as currentLineActions, selectors as currentLineSelectors, types as currentLineTypes } from "../CurrentLine"
 import {
     handleEnterButton,
     executeStatement
@@ -67,7 +67,10 @@ export const handleCalculatorButtonClick = createLogic({
                 let isSecondModeActive = selectors.selectSecondModeStatus(state.calculatorMode)
 
                 if(isSecondModeActive) {
-                    dispatch(actions.resetPreviousQuestion())
+                    let previousQuestions = selectors.selectPreviousQuestions(state.calculatorScreen)
+                    let previousQuestionIndex = selectors.selectPreviousQuestionIndex(state.calculatorScreen)
+                    console.log("pfjkldsa", previousQuestions, previousQuestionIndex)
+                    dispatch(currentLineActions.resetPreviousQuestion(previousQuestions.get(previousQuestionIndex)))
                     break
                 }
 
@@ -156,6 +159,14 @@ export const createStatement = createLogic({
         dispatch(actions.saveAnswer(answer))
         console.log("After saveAnswer")
         console.log("End")
+        done()
+    }
+})
+
+export const resetPreviousQuestion = createLogic({
+    type: currentLineTypes.RESET_PREVIOUS_QUESTION,
+    process({getState, action}, dispatch, done) {
+        dispatch(actions.decrementPreviousQuestionIndex())
         done()
     }
 })
