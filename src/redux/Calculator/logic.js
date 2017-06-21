@@ -32,7 +32,7 @@ export const handleCalculatorButtonClick = createLogic({
         dispatch(actions.startButtonClickAnimation(action.button))
         
         switch(button) {
-            case (button.match(/^([0-9])$|^([+-\u00D7\u00F7])$|^(\(-\))$/) || {}).input: {
+            case (button.match(/^([0-9()])$|^([+-\u00D7\u00F7])$|^(\(-\))$/) || {}).input: {
 
                 //Check if the button pressed is the html entity &times; or &divide;
                 //and convert it to its respective multiplication or division sign.
