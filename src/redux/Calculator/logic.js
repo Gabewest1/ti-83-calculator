@@ -28,7 +28,7 @@ export const handleCalculatorButtonClick = createLogic({
     process({getState, action}, dispatch, done) {
         let { button } = action
         button = button.toLowerCase()
-        console.log(button)
+        console.log("button:", button)
         dispatch(actions.startButtonClickAnimation(action.button))
         
         switch(button) {
@@ -46,7 +46,6 @@ export const handleCalculatorButtonClick = createLogic({
                     button = "-"
                 }
 
-                console.log("adding button to screen: ", button)
                 dispatch(currentLineActions.addCharacterToScreen(button))
                 break
             }
@@ -69,7 +68,6 @@ export const handleCalculatorButtonClick = createLogic({
                 if(isSecondModeActive) {
                     let previousQuestions = selectors.selectPreviousQuestions(state.calculatorScreen)
                     let previousQuestionIndex = selectors.selectPreviousQuestionIndex(state.calculatorScreen)
-                    console.log("pfjkldsa", previousQuestions, previousQuestionIndex)
                     dispatch(currentLineActions.resetPreviousQuestion(previousQuestions.get(previousQuestionIndex)))
                     break
                 }
@@ -151,14 +149,9 @@ export const createStatement = createLogic({
     type: types.CREATE_STATEMENT,
     process({getState, action}, dispatch, done) {
         let {question, answer} = action
-        console.log("Start")
         dispatch(currentLineActions.clearLine())
-        console.log("After clearLine, before saveQuestion")
         dispatch(actions.saveQuestion(question))
-        console.log("After saveQuestion before saveAnswer")
         dispatch(actions.saveAnswer(answer))
-        console.log("After saveAnswer")
-        console.log("End")
         done()
     }
 })

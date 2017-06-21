@@ -33,7 +33,6 @@ export default (props) => {
     let firstHalfOfText = characters.substring(0, position)
     let secondHalfOfText = characters.substring(position+1)
 
-    console.log("MODES:", secondMode, alphaMode)
     return (
         <Container>
             {firstHalfOfText}

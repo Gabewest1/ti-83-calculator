@@ -10,12 +10,9 @@ class CalculatorContainer extends React.Component {
     handleButtonClick = (e) => {
         let button = e.currentTarget
         let isNavigationButton = button.getAttribute("data-buttonType") === "navigation"
-        console.log(button)
-        console.log("isNavigationButton:", isNavigationButton)
+
         // for(var prop in button) console.log(prop)
-        console.log(button.attributes)
         if(isNavigationButton) {
-            console.log("Passing on to the navigation method")
             this.handleNavigationButtonClick(button)
         } else {
             this.props.handleButtonClick(button.textContent)
@@ -24,7 +21,6 @@ class CalculatorContainer extends React.Component {
     handleNavigationButtonClick = (button) => {
         let childElement = button.children[0]
         let direction = childElement.getAttribute("direction")
-        console.log("THE DIRECTION IS:", direction)
         this.props.handleButtonClick(direction)
     }
     render() {
@@ -35,7 +31,6 @@ class CalculatorContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         calculatorScreen: state.calculatorScreen,
         statements: calculatorSelectors.selectStatements(state.calculatorScreen),

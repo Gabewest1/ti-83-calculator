@@ -11,7 +11,6 @@ const initialCurrentLineState = fromJS({
 
 const currentLineReducer = createReducer(initialCurrentLineState)({
     [types.ADD_CHARACTER]: (state, action) => {
-        console.log("Appending new character")
         let { character } = action
         let cursorIndex = state.get("cursorIndex")
 
