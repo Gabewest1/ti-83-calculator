@@ -61,9 +61,27 @@ export default class CalculatorScreen extends React.Component {
         console.log("screen width:", width)
         screen.style.maxWidth = width
     }
+    scrollToBottomOfScreen = () => {
+        let screen = this.getScreenDomElement()
+        if(!screen) {
+            return
+        }
+        let screensOverflowContainerElement = screen.children[0]
+        console.log(screensOverflowContainerElement)
+
+        if(!screensOverflowContainerElement) {
+            return
+        }
+        let clientHeight = screensOverflowContainerElement.clientHeight
+        let scrollHeight = screensOverflowContainerElement.scrollHeight
+
+        if(scrollHeight > clientHeight) {
+            screensOverflowContainerElement.scrollTop = Number.MAX_SAFE_INTEGER
+        }
+    }
     render() {
         let { isPowerOn, statements } = this.props
-        console.log("isPowerOn:", isPowerOn)
+        setTimeout(()=> this.scrollToBottomOfScreen(), 0)
         statements = statements.map((statement, i) => {
             return (
                 <Statement key={i}>
