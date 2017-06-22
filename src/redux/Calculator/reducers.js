@@ -57,8 +57,43 @@ const calculatorModeReducer = createReducer(calculatorModeInitialState)({
     [types.TOGGLE_ALPHA_MODE]: (state, action) => state.update("alphaMode", (alpha) => !alpha),
 })
 
+const screensInitialState = fromJS([
+    {
+        screen: "mode",
+        data: [
+            ["Normal", "Sci", "Eng"], 
+            ["Float", "0123456789"],
+            ["Radian", "Degree"],
+            ["Func", "Par", "Pol", "Seq"],
+            ["Connected", "Dot"],
+            ["Sequential", "Simul"],
+            ["Real", "a+bi", "re^u/03F4i"],
+            ["Full", "Horiz", "G-T"]
+        ]
+    },
+    {
+        screen:"stat",
+        data: [
+            {
+                title: "EDIT",
+                items: ["Edit...", "SortA(", "SortD(", "ClrList", "SetUpEditor"]
+            },
+            {
+                title: "CALC",
+                items: ["1-Var Stats", "2-Var Stats", "Med-Med", "LinReg(ax+b)", "QuadReg", "CubicReg", "QuartReg", "LinReg(a+bx", "LnReg", "ExpReg", "PwrReg", "Logistic", "SinReg"]
+            },
+            {
+                title: "TESTS",
+                items: ["Z-Test...", "T-Test...", "2-SampZTest...", "2-SampTTest...", "1-PropZTest...", "2-PropZTest...", "ZInterval...", "TInterval...", "2-SampZInt...", "2-SampTInt", "1-PropZInt", "2-PropZInt", "2-SampFTest...", "LinRegTTest...", "ANOVA("]
+            }
+        ]
+    }
+])
+const screenReducer = createReducer(screensInitialState)({})
+
 export default {
     calculatorScreen: calculatorScreenReducer,
     calculatorPower: calculatorPowerReducer,
     calculatorMode: calculatorModeReducer,
+    calculatorScreens: screenReducer,
 }

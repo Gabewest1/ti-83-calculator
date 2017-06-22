@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form"
 import CurrentLineContainer from "../containers/CurrentLineContainer"
+import ScreenListContainer from "../containers/ScreenListContainer"
 import CalculatorAnswer from "./CalculatorAnswer"
 import CalculatorQuestion from "./CalculatorQuestion"
 
@@ -94,14 +95,15 @@ export default class CalculatorScreen extends React.Component {
                 </Statement> 
             )
         })
+                    {/*<HideScrollBar>
+                        { statements }
+                        <CurrentLineContainer />
+                    </HideScrollBar>*/}
 
         if(isPowerOn) {
             return (
                 <Screen {...this.props} name="calculatorScreen">
-                    <HideScrollBar>
-                        { statements }
-                        <CurrentLineContainer />
-                    </HideScrollBar>
+                    <ScreenListContainer />
                 </Screen>
             )
         } else {
