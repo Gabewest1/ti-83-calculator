@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form"
-import { Route, withRouter } from "react-router"
+import { Route, Switch } from "react-router"
 import CurrentLineContainer from "../containers/CurrentLineContainer"
 import ScreenContainer from "../containers/ScreenContainer"
 import CalculatorAnswer from "./CalculatorAnswer"
@@ -81,40 +81,52 @@ class CalculatorScreen extends React.Component {
             screensOverflowContainerElement.scrollTop = Number.MAX_SAFE_INTEGER
         }
     }
+    renderDefaultScreen = () => {
+        setTimeout(()=> this.scrollToBottomOfScreen(), 0)
+
+        return (
+            <div>
+                { 
+                    this.props.statements.map((statement, i) => {
+                        return (
+                            <Statement key={i}>
+                                <CalculatorQuestion>
+                                    {statement.question}
+                                </CalculatorQuestion>
+                                <CalculatorAnswer>
+                                    {statement.answer}
+                                </CalculatorAnswer>
+                            </Statement> 
+                        )
+                    }) 
+                }
+                <CurrentLineContainer />
+            </div>
+        )
+    }
+
     render() {
         let { isPowerOn, statements } = this.props
-        setTimeout(()=> this.scrollToBottomOfScreen(), 0)
-        statements = statements.map((statement, i) => {
-            return (
-                <Statement key={i}>
-                    <CalculatorQuestion>
-                        {statement.question}
-                    </CalculatorQuestion>
-                    <CalculatorAnswer>
-                        {statement.answer}
-                    </CalculatorAnswer>
-                </Statement> 
-            )
-        })
-
+        
         if(isPowerOn) {
             return (
-                <Screen {...this.props} name="calculatorScreen">
+                <Screen name="calculatorScreen">
                     <HideScrollBar>
-                        <Route path="/">
-                            <div>
-                                { statements }
-                                <CurrentLineContainer />
-                            </div>
-                        </Route>
-                        <Route path="/mode" component={ScreenContainer} />
-                        <Route path="/stat" component={ScreenContainer} />
+                        <Switch>
+                            <Route exact path="/" render={this.renderDefaultScreen} />
+                            <Route path="/mode" component={ScreenContainer} />
+                            <Route path="/stat" component={ScreenContainer} />
+                            <Route path="/math" component={ScreenContainer} />
+                            <Route path="/apps" component={ScreenContainer} />
+                            <Route path="/prgm" component={ScreenContainer} />
+                            <Route path="/vars" component={ScreenContainer} />
+                        </Switch>
                     </HideScrollBar>
                 </Screen>
             )
         } else {
             return (
-                <Screen {...this.props} name="calculatorScreen">
+                <Screen name="calculatorScreen">
 
                 </Screen>
             )
@@ -122,4 +134,4 @@ class CalculatorScreen extends React.Component {
     }
 }
 
-export default withRouter(CalculatorScreen)
+export default CalculatorScreen

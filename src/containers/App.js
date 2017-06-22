@@ -6,7 +6,7 @@ import CalculatorContainer from "./CalculatorContainer"
 export default class App extends React.Component {
     render() {
         return (
-            <CalculatorContainer />
+            <CalculatorContainer {...this.props}/>
         )
     }
 }   
