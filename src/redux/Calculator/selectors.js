@@ -10,6 +10,17 @@ const selectSecondModeStatus = (state) => state.get("secondMode")
 const selectAlphaModeStatus = (state) => state.get("alphaMode")
 const selectNumPreviousQuestions = (state) => state.get("previousQuestions").size
 const selectPreviousQuestionIndex = (state) => state.get("previousQuestionIndex")
+const selectAllScreenData = (state) => state.calculatorScreens
+const selectCurrentPath = (state) => state.router.location.pathname
+const selectCurrentScreenData = createSelector(
+    selectCurrentPath,
+    selectAllScreenData,
+    (path, screenData) => {
+        console.log(path, screenData)
+        let currentScreen = path.substr(1)
+        return screenData.find(screen => screen.get("screen") === currentScreen)
+    }
+)
 
 export default {
     selectNumCharacters,
@@ -22,6 +33,9 @@ export default {
     selectAlphaModeStatus,
     selectNumPreviousQuestions,
     selectPreviousQuestionIndex,
+    selectAllScreenData,
+    selectCurrentPath,
+    selectCurrentScreenData,
 }
 // const selectStatements = createSelector(
 //     selectPreviousQuestions,

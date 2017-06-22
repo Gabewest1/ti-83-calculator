@@ -57,8 +57,116 @@ const calculatorModeReducer = createReducer(calculatorModeInitialState)({
     [types.TOGGLE_ALPHA_MODE]: (state, action) => state.update("alphaMode", (alpha) => !alpha),
 })
 
+const screensInitialState = fromJS([
+    {
+        screen: "mode",
+        data: [
+            ["Normal", "Sci", "Eng"], 
+            ["Float", "0123456789"],
+            ["Radian", "Degree"],
+            ["Func", "Par", "Pol", "Seq"],
+            ["Connected", "Dot"],
+            ["Sequential", "Simul"],
+            ["Real", "a+bi", "re^\u03F4i"],
+            ["Full", "Horiz", "G-T"]
+        ]
+    },
+    {
+        screen: "stat",
+        data: [
+            {
+                title: "EDIT",
+                items: ["Edit...", "SortA(", "SortD(", "ClrList", "SetUpEditor"]
+            },
+            {
+                title: "CALC",
+                items: ["1-Var Stats", "2-Var Stats", "Med-Med", "LinReg(ax+b)", "QuadReg", "CubicReg", "QuartReg", "LinReg(a+bx", "LnReg", "ExpReg", "PwrReg", "Logistic", "SinReg"]
+            },
+            {
+                title: "TESTS",
+                items: ["Z-Test...", "T-Test...", "2-SampZTest...", "2-SampTTest...", "1-PropZTest...", "2-PropZTest...", "ZInterval...", "TInterval...", "2-SampZInt...", "2-SampTInt", "1-PropZInt", "2-PropZInt", "2-SampFTest...", "LinRegTTest...", "ANOVA("]
+            }
+        ]
+    },
+    {
+        screen: "vars",
+        data: [
+            {
+                title: "VARS",
+                items: ["Window...", "Zoom...", "GDB...", "Picture...", "Statistics...", "Table...", "String..."]
+            },
+            {
+                title: "Y-VARS",
+                items: ["Function...", "Parametric...", "Polar...", "On/Off..."]
+            }
+        ]
+    },
+    {
+        screen: "apps",
+        data: [
+            {
+                title: "APPLICATIONS",
+                items: ["Finance...", "EasyData", "Prob Sim", "SciTools", "StudyCrd"]
+            }
+        ]
+    },
+    {
+        screen: "math",
+        data: [
+            {
+                title: "MATH",
+                items: ["Frac", "Dec", "\u00B9", "\u0606", "\u2093", "fMin(", "fMax(", "fDeriv(", "nDeriv(", "fnInt(", "Solver..."]
+            },
+            {
+                title: "NUM",
+                items: ["abs(", "round(", "iPart(", "fPart(", "int(", "min(", "max(", "lcm(", "gcd("]
+            },
+            {
+                title: "CPX",
+                items: ["conj(", "real(", "imag(", "angle(", "abs(", "Rect", "Polar"]
+            },
+            {
+                title: "PRB",
+                items: ["rand", "nPr", "nCr", "!", "randInt(", "randNorm(", "randBin("]
+            },
+        ]
+    },
+    {
+        screen: "prgm",
+        data: [
+            {
+                title: "EXEC",
+                items: []
+            },
+            {
+                title: "EDIT",
+                items: [],
+            },
+            {
+                title: "NEW",
+                items: ["Create New"]
+            }
+        ]
+    }
+])
+const screenReducer = createReducer(screensInitialState)({})
+
+const screenNavigationInitialState = fromJS({
+    currentTitle: 0,
+})
+const screenNavigationReducer = createReducer(screenNavigationInitialState)({
+    [types.INCREASE_LIST_TITLE_INDEX]: (state, action) => {
+        return state.update("currentTitle", (index) => index+1)
+    },
+    [types.DECREASE_LIST_TITLE_INDEX]: (state, action) => {
+        return state.update("currentTitle", (index) => index-1)
+    },
+})
+
 export default {
     calculatorScreen: calculatorScreenReducer,
     calculatorPower: calculatorPowerReducer,
     calculatorMode: calculatorModeReducer,
+    calculatorScreens: screenReducer,
+    screenListNavigation: screenNavigationReducer,
 }
