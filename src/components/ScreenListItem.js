@@ -11,7 +11,6 @@ let Bullet = styled.span`
 
 export default (props) => {
     let { item, index } = props
-    console.log("individual item:", item)
 
     return (
         <ListItem>
