@@ -17,6 +17,7 @@ let CurrentList = (props) => {
         <div>{childToRender}</div>
     )
 }
+
 export default class Screen extends React.Component {
     createModeScreen() {
         let tabs = this.props.items
@@ -39,7 +40,7 @@ export default class Screen extends React.Component {
         ))
 
         let titles = tabs.map((tab, i) => <span key={i}>{tab.title}</span>)
-        console.log("ayyyyyy:", this.props)
+        
         return (
             <Container>
                 <Navbar>
