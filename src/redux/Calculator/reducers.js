@@ -67,12 +67,12 @@ const screensInitialState = fromJS([
             ["Func", "Par", "Pol", "Seq"],
             ["Connected", "Dot"],
             ["Sequential", "Simul"],
-            ["Real", "a+bi", "re^u/03F4i"],
+            ["Real", "a+bi", "re^\u03F4i"],
             ["Full", "Horiz", "G-T"]
         ]
     },
     {
-        screen:"stat",
+        screen: "stat",
         data: [
             {
                 title: "EDIT",
@@ -85,6 +85,66 @@ const screensInitialState = fromJS([
             {
                 title: "TESTS",
                 items: ["Z-Test...", "T-Test...", "2-SampZTest...", "2-SampTTest...", "1-PropZTest...", "2-PropZTest...", "ZInterval...", "TInterval...", "2-SampZInt...", "2-SampTInt", "1-PropZInt", "2-PropZInt", "2-SampFTest...", "LinRegTTest...", "ANOVA("]
+            }
+        ]
+    },
+    {
+        screen: "vars",
+        data: [
+            {
+                title: "VARS",
+                items: ["Window...", "Zoom...", "GDB...", "Picture...", "Statistics...", "Table...", "String..."]
+            },
+            {
+                title: "Y-VARS",
+                items: ["Function...", "Parametric...", "Polar...", "On/Off..."]
+            }
+        ]
+    },
+    {
+        screen: "apps",
+        data: [
+            {
+                title: "APPLICATIONS",
+                items: ["Finance...", "EasyData", "Prob Sim", "SciTools", "StudyCrd"]
+            }
+        ]
+    },
+    {
+        screen: "math",
+        data: [
+            {
+                title: "MATH",
+                items: ["Frac", "Dec", "\u00B9", "\u0606", "\u2093", "fMin(", "fMax(", "fDeriv(", "nDeriv(", "fnInt(", "Solver..."]
+            },
+            {
+                title: "NUM",
+                items: ["abs(", "round(", "iPart(", "fPart(", "int(", "min(", "max(", "lcm(", "gcd("]
+            },
+            {
+                title: "CPX",
+                items: ["conj(", "real(", "imag(", "angle(", "abs(", "Rect", "Polar"]
+            },
+            {
+                title: "PRB",
+                items: ["rand", "nPr", "nCr", "!", "randInt(", "randNorm(", "randBin("]
+            },
+        ]
+    },
+    {
+        screen: "prgm",
+        data: [
+            {
+                title: "EXEC",
+                items: []
+            },
+            {
+                title: "EDIT",
+                items: [],
+            },
+            {
+                title: "NEW",
+                items: ["Create New"]
             }
         ]
     }
