@@ -1,23 +1,22 @@
 import React from "react"
 import styled from "styled-components"
 
-let Wrapper = styled.div``
-
 let ListItem = styled.li`
-
+    list-style: none;
 `
 
 let Bullet = styled.span`
-
+    margin-right: .8em;
 `
 
 export default (props) => {
     let { item, index } = props
+    console.log("individual item:", item)
 
     return (
-        <Wrapper>
+        <ListItem>
             <Bullet>{index}:</Bullet>
-            <ListItem>{item}</ListItem>
-        </Wrapper>
+            {item}
+        </ListItem>
     )
 }

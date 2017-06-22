@@ -9,12 +9,13 @@ import createStoreWithHistory from "./store"
 import './index.css'
 
 const history = createHistory()
+console.log(history)
 const store = createStoreWithHistory(history)
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Route path="/" component={App} />
+      <App />
     </ConnectedRouter>
   </Provider>
    

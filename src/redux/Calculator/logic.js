@@ -1,4 +1,5 @@
 import { createLogic } from "redux-logic"
+import { push } from "react-router-redux"
 import types from "./types"
 import actions from "./actions"
 import selectors from "./selectors"
@@ -88,11 +89,21 @@ export const handleCalculatorButtonClick = createLogic({
 
             }
             case "left": {
-                dispatch(currentLineActions.moveCursorBackwards())
+                let path = getState().router.location.path
+                if(path === "/") {
+                    dispatch(currentLineActions.moveCursorBackwards())
+                } else {
+                    dispatch(actions.decrementListNavigationIndex())
+                }
                 break
             }
             case "right": {
-                dispatch(currentLineActions.moveCursorForwards())
+                let path = getState().router.location.path
+                if(path === "/") {
+                    dispatch(currentLineActions.moveCursorForwards())
+                } else {
+                    dispatch(actions.increaseListNavigationIndex())
+                }
                 break
             }
             case "on": {
@@ -125,6 +136,24 @@ export const handleCalculatorButtonClick = createLogic({
 
                 dispatch(actions.toggleAlphaMode())
                 break
+            }
+            case "mode": {
+                let isSecondModeActive = selectors.selectSecondModeStatus(getState().calculatorMode)
+                if(isSecondModeActive) {
+                    dispatch(push("/"))
+                } else {
+                    dispatch(push("/mode"))
+                }
+
+                break
+            }
+            case "stat":
+            case "math":
+            case "apps":
+            case"prgm":
+            case "vars": {
+                console.log("pushing button")
+                dispatch(push("/"+button))
             }
             default:
                 break

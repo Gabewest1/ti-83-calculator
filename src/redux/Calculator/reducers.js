@@ -91,9 +91,22 @@ const screensInitialState = fromJS([
 ])
 const screenReducer = createReducer(screensInitialState)({})
 
+const screenNavigationInitialState = fromJS({
+    currentTitle: 0,
+})
+const screenNavigationReducer = createReducer(screenNavigationInitialState)({
+    [types.INCREASE_LIST_TITLE_INDEX]: (state, action) => {
+        return state.update("currentTitle", (index) => index+1)
+    },
+    [types.DECREASE_LIST_TITLE_INDEX]: (state, action) => {
+        return state.update("currentTitle", (index) => index-1)
+    },
+})
+
 export default {
     calculatorScreen: calculatorScreenReducer,
     calculatorPower: calculatorPowerReducer,
     calculatorMode: calculatorModeReducer,
     calculatorScreens: screenReducer,
+    screenListNavigation: screenNavigationReducer,
 }

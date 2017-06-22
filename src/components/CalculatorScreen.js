@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { Field } from "redux-form"
+import { Route, withRouter } from "react-router"
 import CurrentLineContainer from "../containers/CurrentLineContainer"
-import ScreenListContainer from "../containers/ScreenListContainer"
+import ScreenContainer from "../containers/ScreenContainer"
 import CalculatorAnswer from "./CalculatorAnswer"
 import CalculatorQuestion from "./CalculatorQuestion"
 
@@ -37,7 +38,7 @@ let Statement = styled.div`
     width: 100%;
 `
 
-export default class CalculatorScreen extends React.Component {
+class CalculatorScreen extends React.Component {
     constructor(props) {
         super(props)
         window.addEventListener("resize", this.removeAndSetMaxWidth)
@@ -95,15 +96,20 @@ export default class CalculatorScreen extends React.Component {
                 </Statement> 
             )
         })
-                    {/*<HideScrollBar>
-                        { statements }
-                        <CurrentLineContainer />
-                    </HideScrollBar>*/}
 
         if(isPowerOn) {
             return (
                 <Screen {...this.props} name="calculatorScreen">
-                    <ScreenListContainer />
+                    <HideScrollBar>
+                        <Route path="/">
+                            <div>
+                                { statements }
+                                <CurrentLineContainer />
+                            </div>
+                        </Route>
+                        <Route path="/mode" component={ScreenContainer} />
+                        <Route path="/stat" component={ScreenContainer} />
+                    </HideScrollBar>
                 </Screen>
             )
         } else {
@@ -115,3 +121,5 @@ export default class CalculatorScreen extends React.Component {
         }
     }
 }
+
+export default withRouter(CalculatorScreen)
