@@ -5,12 +5,15 @@ import ScreenList from "./ScreenList"
 let Container = styled.div`
 
 `
-let Navbar = styled.nav`
+let Titles = styled.nav`
     display: flex;
-    justify-content: space-between;
+    font-size: 1.3em;
     margin-bottom: .3em;
 `
 let Title = styled.span`
+    padding: .1em;
+    margin-right: .7em;
+
     ${(props) => props.active && `
         color: #808080;
         background-color: #1a1a1a;
@@ -31,7 +34,7 @@ let HighlightActiveTitle = (props) => {
     })
 
     return (
-        <Navbar>{childrenToRender}</Navbar>
+        <Titles>{childrenToRender}</Titles>
     )
 }
 

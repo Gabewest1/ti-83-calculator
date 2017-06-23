@@ -26,7 +26,6 @@ let Button = styled.button`
     border: solid thin #ffffff;
     box-sizing: border-box;
     padding: 3px 0;
-    margin: 0 .5em;
     min-width: 3.6em;
     outline: none;
     
