@@ -9,6 +9,7 @@
   "devDependencies": {
     "alphabet": "^1.0.0",
     "immutable": "^3.8.1",
+    "mathjs": "^3.13.3",
     "prop-types": "^15.5.10",
     "react-redux": "^5.0.5",
     "react-router-redux": "^5.0.0-alpha.6",

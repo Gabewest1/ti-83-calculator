@@ -1,8 +1,7 @@
-export const handleEnterButton = ({getState, action}) => {
-    
-}
+import math from "mathjs"
+
 export const executeStatement = (statement) => {
-    let value = eval(statement)
+    let value = math.eval(statement)
 
     if(isNaN(value)) {
         throw new Error("Statement is invalid: ", statement)
