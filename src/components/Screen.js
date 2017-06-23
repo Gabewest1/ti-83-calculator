@@ -8,6 +8,7 @@ let Container = styled.div`
 let Navbar = styled.nav`
     display: flex;
     justify-content: space-between;
+    margin-bottom: .3em;
 `
 let Title = styled.span`
     ${(props) => props.active && `
