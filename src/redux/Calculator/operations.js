@@ -4,7 +4,7 @@ const handleButtonClick = actions.pressCalculatorButton
 const toggleCalculatorPower = actions.toggleCalculatorPower
 const toggleSecondMode = actions.toggleSecondMode
 const toggleAlphaMode = actions.toggleAlphaMode
-const decrementListNavigationIndex = actions.decrementListNavigationIndex
+const decreaseListNavigationIndex = actions.decreaseListNavigationIndex
 const increaseListNavigationIndex = actions.increaseListNavigationIndex
 const decreaseTitleNavigationIndex = actions.decreaseTitleNavigationIndex
 const increaseTitleNavigationIndex = actions.increaseTitleNavigationIndex
@@ -14,7 +14,7 @@ export default {
     toggleCalculatorPower,
     toggleSecondMode,   
     toggleAlphaMode,
-    decrementListNavigationIndex,
+    decreaseListNavigationIndex,
     increaseListNavigationIndex,
     decreaseTitleNavigationIndex,
     increaseTitleNavigationIndex,

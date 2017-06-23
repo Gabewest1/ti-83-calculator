@@ -93,7 +93,7 @@ export const handleCalculatorButtonClick = createLogic({
                 if(path === "/") {
                     dispatch(currentLineActions.moveCursorBackwards())
                 } else {
-                    dispatch(actions.decrementListNavigationIndex())
+                    dispatch(actions.decreaseListNavigationIndex())
                 }
                 break
             }

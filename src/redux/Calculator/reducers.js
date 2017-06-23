@@ -153,7 +153,7 @@ const screenReducer = createReducer(screensInitialState)({})
 
 const screenNavigationInitialState = fromJS({
     currentTitleIndex: 0,
-    currentItemIndex: 0
+    currentItemIndex: 0,
 })
 const screenNavigationReducer = createReducer(screenNavigationInitialState)({
     [types.INCREASE_LIST_TITLE_INDEX]: (state, action) => {
@@ -168,6 +168,12 @@ const screenNavigationReducer = createReducer(screenNavigationInitialState)({
     [types.DECREASE_LIST_ITEM_INDEX]: (state, action) => {
         return state.update("currentItemIndex", (index) => index-1)
     },
+    [types.RESET_LIST_TITLE_INDEX]: (state, action) => {
+        return state.set("currentTitleIndex", 0)
+    },
+    [types.RESET_LIST_ITEM_INDEX]: (state, action) => {
+        return state.set("currentItemIndex", 0)
+    }
 })
 
 export default {
