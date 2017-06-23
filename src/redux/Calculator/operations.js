@@ -8,6 +8,8 @@ const decreaseListNavigationIndex = actions.decreaseListNavigationIndex
 const increaseListNavigationIndex = actions.increaseListNavigationIndex
 const decreaseTitleNavigationIndex = actions.decreaseTitleNavigationIndex
 const increaseTitleNavigationIndex = actions.increaseTitleNavigationIndex
+const resetItemNavigationIndex = actions.resetItemNavigationIndex
+const resetTitleNavigationIndex = actions.resetTitleNavigationIndex
 
 export default {
     handleButtonClick,
@@ -18,4 +20,6 @@ export default {
     increaseListNavigationIndex,
     decreaseTitleNavigationIndex,
     increaseTitleNavigationIndex,
+    resetItemNavigationIndex,
+    resetTitleNavigationIndex,
 }

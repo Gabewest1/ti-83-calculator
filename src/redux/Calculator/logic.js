@@ -94,6 +94,7 @@ export const handleCalculatorButtonClick = createLogic({
                     dispatch(currentLineActions.moveCursorBackwards())
                 } else {
                     dispatch(actions.decreaseListNavigationIndex())
+                    dispatch(actions.resetItemNavigationIndex())
                 }
                 break
             }
@@ -103,6 +104,7 @@ export const handleCalculatorButtonClick = createLogic({
                     dispatch(currentLineActions.moveCursorForwards())
                 } else {
                     dispatch(actions.increaseListNavigationIndex())
+                    dispatch(actions.resetItemNavigationIndex())                    
                 }
                 break
             }
@@ -172,6 +174,8 @@ export const handleCalculatorButtonClick = createLogic({
             case "vars": {
                 console.log("pushing button")
                 dispatch(push("/"+button))
+                dispatch(actions.resetTitleNavigationIndex())
+                dispatch(actions.resetItemNavigationIndex())
             }
             default:
                 break
