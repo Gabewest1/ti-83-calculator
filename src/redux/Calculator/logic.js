@@ -106,6 +106,24 @@ export const handleCalculatorButtonClick = createLogic({
                 }
                 break
             }
+            case "up": {
+                let path = getState().router.location.path
+                if(path === "/") {
+                    
+                } else {
+                    dispatch(actions.decreaseItemNavigationIndex())
+                }
+                break
+            }
+            case "down": {
+                let path = getState().router.location.path
+                if(path === "/") {
+                    
+                } else {
+                    dispatch(actions.increaseItemNavigationIndex())
+                }
+                break
+            }
             case "on": {
                 let state = getState()
                 let isCalculatorOn = selectors.selectPowerStatus(state.calculatorPower)

@@ -162,6 +162,12 @@ const screenNavigationReducer = createReducer(screenNavigationInitialState)({
     [types.DECREASE_LIST_TITLE_INDEX]: (state, action) => {
         return state.update("currentTitleIndex", (index) => index-1)
     },
+    [types.INCREASE_LIST_ITEM_INDEX]: (state, action) => {
+        return state.update("currentItemIndex", (index) => index+1)
+    },
+    [types.DECREASE_LIST_ITEM_INDEX]: (state, action) => {
+        return state.update("currentItemIndex", (index) => index-1)
+    },
 })
 
 export default {

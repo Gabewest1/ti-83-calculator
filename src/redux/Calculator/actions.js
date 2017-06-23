@@ -29,4 +29,6 @@ export default {
     decrementPreviousQuestionIndex,
     decrementListNavigationIndex,
     increaseListNavigationIndex,
+    decreaseItemNavigationIndex,
+    increaseItemNavigationIndex,
 }
