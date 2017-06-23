@@ -18,13 +18,13 @@ let Screen = styled.div`
     border-left: 1px solid #000;
     border-top: 1px solid #000;
     margin-bottom: 1.5em;
-    padding: .7em;
     box-sizing: border-box;
     word-wrap: break-word;
 `
 let HideScrollBar = styled.div`
     width: 100%;
     height: 100%;
+    padding: .5em 100px 0 .5em;
     overflow-y: scroll;
     padding-right: 100px; //pushes scrollbar out of sight
 `
