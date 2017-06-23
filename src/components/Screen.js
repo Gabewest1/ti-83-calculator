@@ -9,12 +9,28 @@ let Navbar = styled.nav`
     display: flex;
     justify-content: space-between;
 `
+let Title = styled.span`
+    ${(props) => props.active && `
+        color: #808080;
+        background-color: #1a1a1a;
+    `}
+`
 let CurrentList = (props) => {
-    let {currentTitle} = props
-    let childToRender = props.children[currentTitle]
+    let {currentTitleIndex} = props
+    let childToRender = props.children[currentTitleIndex]
 
     return (
         <div>{childToRender}</div>
+    )
+}
+let HighlightActiveTitle = (props) => {
+    let {currentTitleIndex} = props
+    let childrenToRender = props.children.map((child, i) => {
+        return i === currentTitleIndex ? React.cloneElement(child, {active: true}): child
+    })
+
+    return (
+        <Navbar>{childrenToRender}</Navbar>
     )
 }
 
@@ -33,20 +49,21 @@ export default class Screen extends React.Component {
         )
     }
     createScreen() {
+        let {currentItemIndex, currentTitleIndex} = this.props
         let tabs = this.props.items
 
         let lists = tabs.map((tab, i) => (
-            <ScreenList key={i} items={tab.items} />
+            <ScreenList key={i} items={tab.items} activeItemIndex={currentItemIndex} />
         ))
 
-        let titles = tabs.map((tab, i) => <span key={i}>{tab.title}</span>)
+        let titles = tabs.map((tab, i) => <Title key={i}>{tab.title}</Title>)
         
         return (
             <Container>
-                <Navbar>
+                <HighlightActiveTitle currentTitleIndex={currentTitleIndex}>
                     {titles}
-                </Navbar>
-                <CurrentList currentTitle={this.props.currentTitle}>
+                </HighlightActiveTitle>
+                <CurrentList currentTitleIndex={currentTitleIndex}>
                     {lists}
                 </CurrentList>
             </Container>

@@ -6,10 +6,10 @@ let List = styled.div`
 
 `
 export default (props) => {
-    let { items } = props
+    let { items, activeItemIndex } = props
 
     let listItems = items.map((item, index) => (
-        <ScreenListItem key={index} item={item} index={index} />
+        <ScreenListItem key={index} item={item} index={index} active={index === activeItemIndex} />
     ))
 
     return (

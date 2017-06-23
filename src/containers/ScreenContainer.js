@@ -20,7 +20,8 @@ class ScreenContainer extends React.Component {
 function mapStateToProps(state) {
     return {
         currentScreen: calculatorSelectors.selectCurrentScreenData(state),
-        currentTitle: state.screenListNavigation.get("currentTitle")
+        currentTitleIndex: state.screenListNavigation.get("currentTitleIndex"),
+        currentItemIndex: state.screenListNavigation.get("currentItemIndex"),
     }
 }
 
