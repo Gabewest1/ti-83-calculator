@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "block";
+  src: url("/block.ttf") format("truetype");
+}
 html {
   font-size: 100%;
 }
@@ -8,7 +12,7 @@ html, body, #root {
 body, #root {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: block, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
