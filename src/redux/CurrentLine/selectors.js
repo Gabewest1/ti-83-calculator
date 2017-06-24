@@ -1,19 +1,28 @@
 import { createSelector } from "reselect"
 
-const selectCurrentLine = (state) => {
-    let text = state.get("currentLineText")
-    let formattedText = ""
+const selectCurrentLine = (state) => state.get("currentLineText")
 
-    for(var prop in text) {
-        let char = text[prop]
-        if(/[-+*/]/.test(char)) {
-            formattedText += " "+char+" "
-        } else {
-            formattedText += char
+const selectFormattedCurrentLine = createSelector(
+    selectCurrentLine,
+    (text) => {
+        let formattedText = ""
+
+        for(var prop in text) {
+            let char = text[prop]
+
+            if(char === "s") char += "in("
+            if(char === "c") char += "os("
+            if(char === "t") char += "an("
+
+            if(/[-+*/]/.test(char)) {
+                formattedText += " "+char+" "
+            } else {
+                formattedText += char
+            }
         }
+        return formattedText
     }
-    return formattedText
-}
+)
 
 const selectCursorIndexNumber = (state) => state.get("cursorIndex")
 
@@ -21,16 +30,26 @@ const selectCursorIndex = createSelector(
     selectCurrentLine,
     selectCursorIndexNumber,
     (currentLineText, cursorIndex) => {
-        let currentCharacter = currentLineText.replace(/\s/g, "")[cursorIndex]
+        let currentCharacter = currentLineText[cursorIndex]
         let numOfOperators = currentLineText
-                                        .replace(/\s/g,"")
                                         .substring(0, cursorIndex+1)
                                         .split("")
-                                        .filter(char => /[-+*/]/.test(char))
+                                        .filter(char => /[-+*/^]/.test(char))
                                         .length
-        let numOfSpaces = numOfOperators*2
-        if(/[-+*/]/.test(currentCharacter)) {
+
+        let numOfTrigOperations = currentLineText
+                                        .substring(0, cursorIndex+1)
+                                        .split("")
+                                        .filter(char => /[sct]/.test(char))
+                                        .length
+
+        console.log("numOfTrigOperations", numOfTrigOperations)
+        let numOfSpaces = numOfOperators*2 + numOfTrigOperations*3
+
+        if(/[-+*/^]/.test(currentCharacter)) {
             numOfSpaces--
+        } else if(/[sct]/.test(currentCharacter)) {
+            numOfSpaces -= 3
         }
 
         return cursorIndex + numOfSpaces
@@ -40,4 +59,6 @@ const selectCursorIndex = createSelector(
 export default {
     selectCurrentLine,
     selectCursorIndex,
+    selectFormattedCurrentLine,
+    selectCursorIndexNumber,
 }

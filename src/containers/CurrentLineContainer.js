@@ -17,7 +17,7 @@ class CurrentLineContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        currentLineText: currentLineSelectors.selectCurrentLine(state.currentLine),
+        currentLineText: currentLineSelectors.selectFormattedCurrentLine(state.currentLine),
         cursorIndex: currentLineSelectors.selectCursorIndex(state.currentLine),
         isInSecondMode: calculatorSelectors.selectSecondModeStatus(state.calculatorMode),
         isInAlphaMode: calculatorSelectors.selectAlphaModeStatus(state.calculatorMode),

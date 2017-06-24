@@ -48,7 +48,7 @@ export const handleCalculatorButtonClick = createLogic({
                 }
 
                 if(button === "sin" || button === "cos" || button === "tan") {
-                    button += "("
+                    button = button.charAt(0)
                 }
 
                 dispatch(currentLineActions.addCharacterToScreen(button))
@@ -67,7 +67,7 @@ export const handleCalculatorButtonClick = createLogic({
             }
             case "enter": {
                 let state = getState()
-                let question = currentLineSelectors.selectCurrentLine(state.currentLine)
+                let question = currentLineSelectors.selectFormattedCurrentLine(state.currentLine)
                 let isSecondModeActive = selectors.selectSecondModeStatus(state.calculatorMode)
 
                 if(isSecondModeActive) {
