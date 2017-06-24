@@ -18,10 +18,12 @@ class ScreenContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
+    console.log("CurrenScreenName:", calculatorSelectors.selectCurrentScreenName(state.screenListNavigation))
+    console.log("CurrentScreen:", calculatorSelectors.selectCurrentScreen(state.screenListNavigation))
     return {
-        currentScreen: calculatorSelectors.selectCurrentScreenData(state),
-        currentTitleIndex: state.screenListNavigation.get("currentTitleIndex"),
-        currentItemIndex: state.screenListNavigation.get("currentItemIndex"),
+        currentScreen: calculatorSelectors.selectCurrentScreen(state.screenListNavigation),
+        currentTitleIndex: calculatorSelectors.selectCurrentTitleIndex(state.screenListNavigation),
+        currentItemIndex: calculatorSelectors.selectCurrentItemIndex(state.screenListNavigation),
     }
 }
 

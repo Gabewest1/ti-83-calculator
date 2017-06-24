@@ -10,6 +10,7 @@ const decreaseTitleNavigationIndex = actions.decreaseTitleNavigationIndex
 const increaseTitleNavigationIndex = actions.increaseTitleNavigationIndex
 const resetItemNavigationIndex = actions.resetItemNavigationIndex
 const resetTitleNavigationIndex = actions.resetTitleNavigationIndex
+const setScreen = actions.setScreen
 
 export default {
     handleButtonClick,
@@ -22,4 +23,5 @@ export default {
     increaseTitleNavigationIndex,
     resetItemNavigationIndex,
     resetTitleNavigationIndex,
+    setScreen,
 }

@@ -165,8 +165,10 @@ export const handleCalculatorButtonClick = createLogic({
             case "mode": {
                 let isSecondModeActive = selectors.selectSecondModeStatus(getState().calculatorMode)
                 if(isSecondModeActive) {
+                    dispatch(actions.setScreen(""))
                     dispatch(push("/"))
                 } else {
+                    dispatch(actions.setScreen("mode"))
                     dispatch(push("/mode"))
                 }
 
@@ -177,6 +179,7 @@ export const handleCalculatorButtonClick = createLogic({
             case "apps":
             case"prgm":
             case "vars": {
+                dispatch(actions.setScreen(button))
                 console.log("pushing button")
                 dispatch(push("/"+button))
                 dispatch(actions.resetTitleNavigationIndex())

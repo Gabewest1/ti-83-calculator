@@ -17,6 +17,7 @@ const decreaseItemNavigationIndex = () => ({ type: types.DECREASE_LIST_ITEM_INDE
 const increaseItemNavigationIndex = () => ({ type: types.INCREASE_LIST_ITEM_INDEX })
 const resetItemNavigationIndex = () => ({ type: types.RESET_LIST_ITEM_INDEX })
 const resetTitleNavigationIndex = () => ({ type: types.RESET_LIST_TITLE_INDEX })
+const setScreen = (screen) => ({ type: types.SET_CURRENT_SCREEN, screen })
 
 export default {
     pressCalculatorButton,
@@ -35,4 +36,5 @@ export default {
     increaseItemNavigationIndex,
     resetItemNavigationIndex,
     resetTitleNavigationIndex,
+    setScreen,
 }
