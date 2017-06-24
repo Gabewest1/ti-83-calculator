@@ -24,10 +24,11 @@ const currentLineReducer = createReducer(initialCurrentLineState)({
         return state.set("currentLineText", "").set("cursorIndex", 0)
     },
     [types.MOVE_CURSOR_BACKWARDS]: (state, action) => {
-        return state.update("cursorIndex", (index) => index-1)
+        return state.update("cursorIndex", (index) => Math.max(0, index-1))
     },
     [types.MOVE_CURSOR_FORWARDS]: (state, action) => {
-        return state.update("cursorIndex", (index) => index+1)
+        let numCharacters = state.get("currentLineText").length
+        return state.update("cursorIndex", (index) => Math.min(index+1, numCharacters))
     },
     [types.RESET_PREVIOUS_QUESTION]: (state, action) => {
         let { question } = action
