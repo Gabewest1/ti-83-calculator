@@ -92,7 +92,7 @@ export default class Calculator extends React.Component {
                         <CalculatorButton onClick={this.props.onClick} bg={black}>CLEAR</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.props.onClick} bg={black}>X-&sup1;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black}>X&#8315;&sup1;</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>SIN</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>COS</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>TAN</CalculatorButton>

@@ -44,7 +44,7 @@ export const handleCalculatorButtonClick = createLogic({
                 } else if(button === "\u00F7") {
                     button = "/"
                 } else if(button === "(-)") {
-                    button = "-"
+                    button = "\u207B"
                 }
 
                 if(button === "sin" || button === "cos" || button === "tan") {
@@ -71,9 +71,11 @@ export const handleCalculatorButtonClick = createLogic({
                 let isSecondModeActive = selectors.selectSecondModeStatus(state.calculatorMode)
 
                 if(isSecondModeActive) {
-                    let previousQuestions = selectors.selectPreviousQuestions(state.calculatorScreen)
+                    let allPreviousQuestions = selectors.selectPreviousQuestions(state.calculatorScreen)
                     let previousQuestionIndex = selectors.selectPreviousQuestionIndex(state.calculatorScreen)
-                    dispatch(currentLineActions.resetPreviousQuestion(previousQuestions.get(previousQuestionIndex)))
+                    let currentPreviousQuestion = allPreviousQuestions.get(previousQuestionIndex)
+
+                    dispatch(currentLineActions.resetPreviousQuestion(currentPreviousQuestion))
                     break
                 }
 
