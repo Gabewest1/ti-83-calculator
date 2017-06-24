@@ -9,6 +9,11 @@ let Titles = styled.nav`
     display: flex;
     font-size: 1.3em;
     margin-bottom: .3em;
+    
+    ${(props) => props.mode && `
+        font-size: 1em;
+        margin-bottom: 0;
+    `}
 `
 let Title = styled.span`
     padding: .1em;
@@ -28,22 +33,26 @@ let CurrentList = (props) => {
     )
 }
 let HighlightActiveTitle = (props) => {
-    let {currentTitleIndex} = props
+    let {currentTitleIndex, mode} = props
     let childrenToRender = props.children.map((child, i) => {
         return i === currentTitleIndex ? React.cloneElement(child, {active: true}): child
     })
 
     return (
-        <Titles>{childrenToRender}</Titles>
+        <Titles mode>{childrenToRender}</Titles>
     )
 }
 
 export default class Screen extends React.Component {
     createModeScreen() {
-        let tabs = this.props.items
+        let rows = this.props.items
 
-        let lists = tabs.map((tab, i) => (
-            <ScreenList key={i} items={tab} />
+        let lists = rows.map((tab, i) => (
+            <HighlightActiveTitle mode key={i} currentTitleIndex={0}>
+                {
+                    tab.map((child, i) => <Title key={i}>{child}</Title>)
+                }
+            </HighlightActiveTitle>
         ))
         
         return (
