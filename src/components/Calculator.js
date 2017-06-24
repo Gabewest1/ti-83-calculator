@@ -46,7 +46,7 @@ export default class Calculator extends React.Component {
         let yellow = "yellow"
         let black = "#1d1d1d"
         let teal = "teal"
-        let blue = "blue"
+        let blue = "#3d34e6"
         let white = "white"
         
         let { isPowerOn, statements } = this.props
@@ -92,7 +92,7 @@ export default class Calculator extends React.Component {
                         <CalculatorButton onClick={this.props.onClick} bg={black}>CLEAR</CalculatorButton>
                     </Row>
                     <Row>
-                        <CalculatorButton onClick={this.props.onClick} bg={black}>X&#8315;&sup1;</CalculatorButton>
+                        <CalculatorButton onClick={this.props.onClick} bg={black} style={{padding:0}}>X&#8315;&sup1;</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>SIN</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>COS</CalculatorButton>
                         <CalculatorButton onClick={this.props.onClick} bg={black}>TAN</CalculatorButton>
