@@ -15,7 +15,9 @@ let Bullet = styled.span`
     `}
 `
 let Colon = styled.span`
-    font-size: 1.5em
+    font-size: 1.5em;
+    position: relative;
+    top: .2em;
     line-height: 0%;
 `
 

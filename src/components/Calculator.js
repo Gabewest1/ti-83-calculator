@@ -21,6 +21,7 @@ let CalculatorBody = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0 -5px;
 `
 let Row = styled.div`
     display: flex;
@@ -39,11 +40,7 @@ let EmptySpace = styled(CalculatorButton)`
     box-shadow: none;
     pointer-events: none;
 `
-let ScreenNavigationButtonsContainer = styled.div`
-    flex: 1 1 auto;
-    height: 100%;
-    width: 30%;
-`
+
 export default class Calculator extends React.Component {  
     render() {
         let yellow = "yellow"
@@ -83,9 +80,7 @@ export default class Calculator extends React.Component {
                                 
                             </div>                            
                             
-                            <ScreenNavigationButtonsContainer>
-                                <CalculatorNavigationButtonGroup navigation={true} onClick={this.props.onClick}/>
-                            </ScreenNavigationButtonsContainer>
+                            <CalculatorNavigationButtonGroup navigation={true} onClick={this.props.onClick}/>
                         </Row>
 
                     </Row>

@@ -85,15 +85,15 @@ let Triangle = styled.div`
 
 let Group = styled.div`
     position: relative;
-    top: -6%;
-    width: 78%;
-    height: 102%;
+    top: -26%;
+    left: -3%;
+    width: 30%;
+    height: 135%;
 `
 
 let ButtonWrapper = styled.div`
     position: absolute;
     z-index: 1;
-
 `
 export default (props) => {
     return (

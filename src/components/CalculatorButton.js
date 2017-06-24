@@ -17,7 +17,7 @@ let Button = styled.button`
     font-size: inherit;
     position: relative;
     display: flex;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     align-items: center;
     background: ${(props) => props.bg};
     color: ${(props) => props.bg === "white" ? "black" : "white"};
@@ -28,7 +28,7 @@ let Button = styled.button`
     padding: 3px 0;
     min-width: 3.6em;
     outline: none;
-    
+    margin: 0 5px;
     transition: all .7s ease-in-out;
 
     ${(props) => props.isClicked && `animation: ${ButtonPressedAnimation} .1s ease-in-out`};
