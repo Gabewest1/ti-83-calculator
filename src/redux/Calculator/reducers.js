@@ -119,7 +119,7 @@ const screensInitialState = fromJS({
             data: [
                 {
                     title: "MATH",
-                    items: ["Frac", "Dec", "\u00B9", "\u0606", "\u2093", "fMin(", "fMax(", "fDeriv(", "nDeriv(", "fnInt(", "Solver..."]
+                    items: ["Frac", "Dec", "\u00B3", "\u221B", "\u2093\u221A", "fMin(", "fMax(", "fDeriv(", "nDeriv(", "fnInt(", "Solver..."]
                 },
                 {
                     title: "NUM",
