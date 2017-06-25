@@ -20,15 +20,16 @@ let Screen = styled.div`
     margin-bottom: 1.5em;
     box-sizing: border-box;
     word-wrap: break-word;
+    padding: .5em .5em 0 .5em;
 `
 let HideScrollBar = styled.div`
     width: 100%;
     height: 100%;
-    padding: .5em 100px 0 .5em;
     overflow-y: scroll;
-    padding-right: 100px; //pushes scrollbar out of sight
+    padding-right: 10%; //pushes scrollbar out of sight
 `
-
+let StyledSwitch = styled(Switch)`
+`
 let CurrentQuestion = styled.span`
     max-width: 100%;
     word-wrap: break-word;
@@ -112,7 +113,7 @@ class CalculatorScreen extends React.Component {
             return (
                 <Screen name="calculatorScreen">
                     <HideScrollBar>
-                        <Switch>
+                        <StyledSwitch>
                             <Route exact path="/" render={this.renderDefaultScreen} />
                             <Route path="/mode" component={ScreenContainer} />
                             <Route path="/stat" component={ScreenContainer} />
@@ -120,9 +121,9 @@ class CalculatorScreen extends React.Component {
                             <Route path="/apps" component={ScreenContainer} />
                             <Route path="/prgm" component={ScreenContainer} />
                             <Route path="/vars" component={ScreenContainer} />
-                        </Switch>
+                        </StyledSwitch>
                     </HideScrollBar>
-                </Screen>
+            </Screen>
             )
         } else {
             return (

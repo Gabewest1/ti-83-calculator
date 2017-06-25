@@ -13,6 +13,8 @@ const selectFormattedCurrentLine = createSelector(
             if(char === "s") char += "in("
             if(char === "c") char += "os("
             if(char === "t") char += "an("
+            if(char === "l") char += "og("
+            if(char === "n") char = "ln("
 
             if(/[-+*/]/.test(char)) {
                 formattedText += " "+char+" "
@@ -31,24 +33,21 @@ const selectCursorIndex = createSelector(
     selectCursorIndexNumber,
     (currentLineText, cursorIndex) => {
         let currentCharacter = currentLineText[cursorIndex]
-        let numOfOperators = currentLineText
-                                        .substring(0, cursorIndex+1)
-                                        .split("")
-                                        .filter(char => /[-+*/^]/.test(char))
-                                        .length
-
-        let numOfTrigOperations = currentLineText
-                                        .substring(0, cursorIndex+1)
-                                        .split("")
-                                        .filter(char => /[sct]/.test(char))
-                                        .length
+        currentLineText = currentLineText.substring(0, cursorIndex+1).split("")
+        
+        let numOfOperators = currentLineText.filter(char => /[-+*/^]/.test(char)).length
+        let numOfTrigOperations = currentLineText.filter(char => /[sct]/.test(char)).length
+        let numOfLogs = currentLineText.filter(char => char === "l").length
+        let numOfNaturalLogs = currentLineText.filter(char => char === "n").length
 
         console.log("numOfTrigOperations", numOfTrigOperations)
-        let numOfSpaces = numOfOperators*2 + numOfTrigOperations*3
+        let numOfSpaces = numOfOperators*2 + numOfTrigOperations*3 + numOfLogs*3 + numOfNaturalLogs*2
 
         if(/[-+*/^]/.test(currentCharacter)) {
             numOfSpaces--
-        } else if(/[sct]/.test(currentCharacter)) {
+        } else if(currentCharacter === "n") {
+            numOfSpaces -= 2
+        } else if(/[sctl]/.test(currentCharacter)) {
             numOfSpaces -= 3
         }
 
