@@ -8,7 +8,8 @@ const initialCalculatorScreenState = fromJS({
     statements: [],
     previousQuestions: [],
     previousAnswers: [],
-    previousQuestionIndex: 0
+    previousQuestionIndex: 0,
+    previousAnswerIndex: 0,
 })
 const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     [types.CLEAR_SCREEN]: (state, action) => {
@@ -17,7 +18,7 @@ const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     [types.SAVE_ANSWER]: (state, action) => {
         let { answer } = action
 
-        return state.update("previousAnswers", (previousAnswers) => previousAnswers.push(answer))
+        return state.update("previousAnswers", (previousAnswers) => previousAnswers.unshift(answer))
     },
     [types.SAVE_QUESTION]: (state, action) => {
         let { question } = action
@@ -34,6 +35,9 @@ const calculatorScreenReducer = createReducer(initialCalculatorScreenState)({
     },
     [types.DECREMENT_PREVIOUS_QUESTION_INDEX]: (state, action) => {
         return state.update("previousQuestionIndex", (index) => Math.max(index-1, 0))
+    },
+    [types.DECREMENT_PREVIOUS_ANSWER_INDEX]: (state, action) => {
+        return state.update("previousAnswerIndex", (index) => Math.max(index-1, 0))
     }
 })
 
