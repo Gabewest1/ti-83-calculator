@@ -1,7 +1,7 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 
-let boxShadow = "1px 4px lightgray"
+let boxShadow = "1px 4px #353333"
 
 let ButtonPressedAnimation = keyframes`
     50% {
@@ -9,7 +9,7 @@ let ButtonPressedAnimation = keyframes`
         top: 3px;
     }
     100% {
-        box-shadow: ${boxShadow};
+        box-shadow: 1px 3px ${(props) => props.bg};
         top: 0px;
     }
 `
@@ -20,10 +20,10 @@ let Button = styled.button`
     flex: 0 0 auto;
     align-items: center;
     background: ${(props) => props.bg};
-    color: ${(props) => props.bg === "white" ? "black" : "white"};
+    color: ${(props) => props.bg === "#ffffff" ? "black" : "white"};
     border-radius: 5px;
     justify-content: center;
-    border: solid thin #ffffff;
+    border: solid thin ${(props) => props.bg === "#ffffff" ? "black" : "white"};
     box-sizing: border-box;
     padding: 3px 0;
     min-width: 3.6em;
@@ -33,7 +33,7 @@ let Button = styled.button`
 
     ${(props) => props.isClicked && `animation: ${ButtonPressedAnimation} .1s ease-in-out`};
 
-    box-shadow: ${boxShadow};
+    box-shadow: 1px 3px ${(props) => props.bg};
 `
 
 export default class CalculatorButton extends React.Component {
