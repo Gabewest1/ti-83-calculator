@@ -4,6 +4,7 @@ import styled from "styled-components"
 let QuestionContainer = styled.div`
     position: relative;
     width: 100%;
+    margin-bottom: .7em
 `
 let Question = styled.span`
     
