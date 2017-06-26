@@ -46,30 +46,34 @@ function findAndCalculateNextSquareRoot(statement) {
     return  arr
 }
 function getPreviousNumber(numbers, start) {
-    let stoppingPoints = /[-+*/^()\s]/
-    let rightParenthesis = 0
-    let startedWithParenthesis = numbers[start]-1 === ")"
+    let stoppingPoints = /[-+*/^(\s]/
+    let rightParenthesis = 1
+    let startedWithParenthesis = numbers[start-1] === ")"
 
-    for(var i=start; i>=0; i--) {
+    for(var i=start-1; i>=0; i--) {
         let char = numbers[i]
-
+        
         if(startedWithParenthesis) {
+            console.log("Started with a parenthesis")
             if(stoppingPoints.test(char)) {
                 if(rightParenthesis === 0) {
                     return numbers.slice(i+1, start).join("")
                 } else if(char === "(") {
+                    console.log("char === (, decreasing rightParenthesis")
                     rightParenthesis--
                 }
             } else if(char === ")") {
+                console.log("char === ), increasing rightParenthesis")                
                 rightParenthesis++
             }
         } else {
-            if(stoppingPoints.test(char)) {
+            if(stoppingPoints.test(char) || char === ")") {
                 return numbers.slice(i+1, start).join("")
             }
         }
     }
 
+    console.log("START:", start)
     return numbers.slice(0, start).join("")
 }
 
