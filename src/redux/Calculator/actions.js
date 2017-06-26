@@ -11,6 +11,7 @@ const toggleCalculatorPower = () => ({ type: types.TOGGLE_POWER })
 const toggleSecondMode = () => ({ type: types.TOGGLE_SECOND_MODE })
 const toggleAlphaMode = () => ({ type: types.TOGGLE_ALPHA_MODE })
 const decrementPreviousQuestionIndex = () => ({ type: types.DECREMENT_PREVIOUS_QUESTION_INDEX })
+const decrementPreviousAnswerIndex = () => ({ type: types.DECREMENT_PREVIOUS_ANSWER_INDEX })
 const decreaseListNavigationIndex = () => ({ type: types.DECREASE_LIST_TITLE_INDEX })
 const increaseListNavigationIndex = () => ({ type: types.INCREASE_LIST_TITLE_INDEX })
 const decreaseItemNavigationIndex = () => ({ type: types.DECREASE_LIST_ITEM_INDEX })
@@ -30,6 +31,7 @@ export default {
     toggleSecondMode,
     toggleAlphaMode,
     decrementPreviousQuestionIndex,
+    decrementPreviousAnswerIndex,
     decreaseListNavigationIndex,
     increaseListNavigationIndex,
     decreaseItemNavigationIndex,
