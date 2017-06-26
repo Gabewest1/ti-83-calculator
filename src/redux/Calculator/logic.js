@@ -47,6 +47,18 @@ export const handleCalculatorButtonClick = createLogic({
                     button = "\u207B"
                 }
 
+                //If button is an operation, check if there is already a question being typed,
+                //if not: try to grab the previous answer if it exists and chain it
+                let state = getState()
+                let question = currentLineSelectors.selectFormattedCurrentLine(state.currentLine)
+                let isOperation = (button === "x\u00B2" || /[-+/*^]/.test(button))
+                if(isOperation && question === "") {
+                    let previousAnswer = selectors.selectPreviousAnswers(state.calculatorScreen).get(0)
+                    if(previousAnswer) {
+                        dispatch(currentLineActions.addCharacterToScreen(previousAnswer))
+                    }
+                }
+
                 if(button === "sin" || button === "cos" || button === "tan") {
                     button = button.charAt(0)
                 }
@@ -57,6 +69,11 @@ export const handleCalculatorButtonClick = createLogic({
                     button = "n"
                 }
 
+                dispatch(currentLineActions.addCharacterToScreen(button))
+                break
+            }
+            case "x\u00B2": {
+                button = "\u00B2"                
                 dispatch(currentLineActions.addCharacterToScreen(button))
                 break
             }
