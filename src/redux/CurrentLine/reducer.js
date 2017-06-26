@@ -18,7 +18,7 @@ const currentLineReducer = createReducer(initialCurrentLineState)({
                 .update("currentLineText", (currentLineText) => {
                     return currentLineText.slice(0, cursorIndex) + character + currentLineText.slice(cursorIndex+1)
                 })
-                .update("cursorIndex", (cursorIndex) => cursorIndex+character.length)
+                .update("cursorIndex", (cursorIndex) => cursorIndex+String(character).length)
     },
     [types.CLEAR_LINE]: (state, action) => {
         return state.set("currentLineText", "").set("cursorIndex", 0)
