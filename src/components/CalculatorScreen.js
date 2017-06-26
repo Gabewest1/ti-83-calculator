@@ -42,27 +42,10 @@ let Statement = styled.div`
 class CalculatorScreen extends React.Component {
     constructor(props) {
         super(props)
-        window.addEventListener("resize", this.removeAndSetMaxWidth)
-    }
-    componentDidMount() {
-        console.log("component mounted")
-        this.setScreensMaxWidth()
     }
     getScreenDomElement = () => {
         let screen = document.getElementsByName("calculatorScreen")[0]
         return screen        
-    }
-    removeAndSetMaxWidth = () => {
-        let screen = this.getScreenDomElement()
-        screen.style.maxWidth = "100%"
-        console.log("maxWidth: ", screen.style.maxWidth)
-        setTimeout(this.setScreensMaxWidth, 100)
-    }
-    setScreensMaxWidth = () => {
-        let screen = this.getScreenDomElement()        
-        let width = window.getComputedStyle(screen, null).getPropertyValue("width")
-        console.log("screen width:", width)
-        screen.style.maxWidth = width
     }
     scrollToBottomOfScreen = () => {
         let screen = this.getScreenDomElement()
