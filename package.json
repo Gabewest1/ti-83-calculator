@@ -1,7 +1,7 @@
 {
   "name": "twitch-tv-api-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
