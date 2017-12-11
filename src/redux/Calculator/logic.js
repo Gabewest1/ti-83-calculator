@@ -118,8 +118,11 @@ export const handleCalculatorButtonClick = createLogic({
             }
             case "left": {
                 let path = getState().router.location.pathname
+                
                 if(path === "/") {
                     dispatch(currentLineActions.moveCursorBackwards())
+                } else if (path === "/mode") {
+                    //Do nothing b/c changing item navigation index causes the calculator to break  
                 } else {
                     dispatch(actions.decreaseListNavigationIndex())
                     dispatch(actions.resetItemNavigationIndex())
@@ -128,8 +131,11 @@ export const handleCalculatorButtonClick = createLogic({
             }
             case "right": {
                 let path = getState().router.location.pathname
+                
                 if(path === "/") {
                     dispatch(currentLineActions.moveCursorForwards())
+                } else if (path === "/mode") {
+                    //Do nothing b/c changing item navigation index causes the calculator to break  
                 } else {
                     dispatch(actions.increaseListNavigationIndex())
                     dispatch(actions.resetItemNavigationIndex())                    
@@ -137,18 +143,24 @@ export const handleCalculatorButtonClick = createLogic({
                 break
             }
             case "up": {
-                let path = getState().router.location.path
+                let path = getState().router.location.pathname
+                
                 if(path === "/") {
                     
+                } else if (path === "/mode") {
+                    //Do nothing b/c changing item navigation index causes the calculator to break  
                 } else {
                     dispatch(actions.decreaseItemNavigationIndex())
                 }
                 break
             }
             case "down": {
-                let path = getState().router.location.path
+                let path = getState().router.location.pathname
+
                 if(path === "/") {
                     
+                } else if (path === "/mode") {
+                    //Do nothing b/c changing item navigation index causes the calculator to break 
                 } else {
                     dispatch(actions.increaseItemNavigationIndex())
                 }
