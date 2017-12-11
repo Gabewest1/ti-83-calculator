@@ -33,7 +33,18 @@ export const handleCalculatorButtonClick = createLogic({
         dispatch(actions.startButtonClickAnimation(action.button))
         
         switch(button) {
-            case (button.match(/^([0-9()])$|^([+-\u00D7\u00F7])$|^(\(-\))$|^((sin)|(cos)|(tan)|(log)|(ln))$/) || {}).input: {
+            case (button.match(/^([0-9()])$|^([+-\u00D7\u00F7])$|^(\(-\))$|^((sin)|(cos)|(tan)|(log)|(ln))$|^(x\u00B2)$/) || {}).input: {
+
+                let path = getState().router.location.pathname
+
+                //Should only append characters to the screen if on the root route
+                if (path !== "/") {
+                    done()
+                }
+
+                if (button === "x\u00B2") {
+                    button = "\u00B2"
+                }
 
                 //Check if the button pressed is the html entity &times; or &divide;
                 //and convert it to its respective multiplication or division sign.
@@ -69,11 +80,6 @@ export const handleCalculatorButtonClick = createLogic({
                     button = "n"
                 }
 
-                dispatch(currentLineActions.addCharacterToScreen(button))
-                break
-            }
-            case "x\u00B2": {
-                button = "\u00B2"                
                 dispatch(currentLineActions.addCharacterToScreen(button))
                 break
             }
