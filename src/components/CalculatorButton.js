@@ -29,7 +29,7 @@ let Button = styled.button`
     min-width: 3.6em;
     outline: none;
     margin: 0 5px;
-    box-shadow: 0px 2px ${(props) => props.bg};
+    box-shadow: 0px 3px ${(props) => props.bg};
 
     &:active {
         box-shadow: 0px 0px ${(props) => props.bg};
@@ -40,12 +40,8 @@ let Button = styled.button`
 export default class CalculatorButton extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isClicked: false
-        }
     }
     handleClick(e, onClickFromProps) {
-        this.setState({isClicked: true})
         onClickFromProps(e)
     }
     render() {
@@ -55,8 +51,6 @@ export default class CalculatorButton extends React.Component {
             <Button 
                 {...this.props} 
                 onClick={(e) => this.handleClick(e, onClickFromProps)} 
-                isClicked={this.state.isClicked} 
-                onAnimationEnd={() => this.setState({isClicked: false})}
             />
         )
     }
