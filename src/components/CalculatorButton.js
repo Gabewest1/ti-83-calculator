@@ -29,11 +29,12 @@ let Button = styled.button`
     min-width: 3.6em;
     outline: none;
     margin: 0 5px;
-    transition: all .7s ease-in-out;
+    box-shadow: 0px 2px ${(props) => props.bg};
 
-    ${(props) => props.isClicked && `animation: ${ButtonPressedAnimation} .1s ease-in-out`};
-
-    box-shadow: 1px 3px ${(props) => props.bg};
+    &:active {
+        box-shadow: 0px 0px ${(props) => props.bg};
+        top: 1px;        
+    }
 `
 
 export default class CalculatorButton extends React.Component {
