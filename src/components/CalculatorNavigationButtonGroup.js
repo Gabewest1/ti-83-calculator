@@ -1,6 +1,7 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 import CalculatorButton from "./CalculatorButton"
+import colorer from 'colorer'
 
 let boxShadow = "1px 4px lightgray"
 
@@ -12,27 +13,16 @@ let ScreenCursorNavButton = styled(CalculatorButton)`
     min-width: auto;
     z-index: 2;
     margin: 0;
-`
 
-let LeftButtonPressedAnimation = keyframes`
-    50% {
-        box-shadow: 0 2px black;
-        left: 3px;
-    }
-    100% {
-        box-shadow: ${(props) => props.bg};
-        left: 0px;
-    }
-`
-
-let RightButtonPressedAnimation = keyframes`
-    50% {
-        box-shadow: 0 2px black;
-        right: 3px;
-    }
-    100% {
-        box-shadow: ${(props) => props.bg};
-        right: 0px;
+    &:active {
+        box-shadow: 0px 0px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};
+        ${({direction}) => {
+            return direction === "up" ? "top: 3px;" : 
+                   direction === "down" ? "top: -3px;" :
+                   direction === "left" ? "left: 3px; top: 0;" :
+                   direction === "right" ? "left: -3px; top: 0;" :
+                   ""
+        }}     
     }
 `
 
@@ -40,29 +30,25 @@ let UpCursorButton = styled(ScreenCursorNavButton)`
     height: 1.5em;
     width: 3em;
     border-radius: 135% 135% 150% 150%;    
-    box-shadow: 0px 3px ${(props) => props.bg};
+    box-shadow: 0px 3px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};
 `
 let RightCursorButton = styled(ScreenCursorNavButton)`
-    width: 1.5em;
     height: 3em;
+    width: 1.5em;
     border-radius: 150% 150% 135% 135%;    
-    box-shadow: -1px 0px ${(props) => props.bg}; 
-    
-    ${(props) => props.isClicked && `animation: ${RightButtonPressedAnimation} .1s ease-in-out`}; 
+    box-shadow: -3px 0px ${({ bg }) => bg ? colorer(bg).light(-30) : ""}; 
 `
 let DownCursorButton = styled(ScreenCursorNavButton)`
     height: 1.5em;
     width: 3em;
     border-radius: 135% 135% 150% 150%;  
-    box-shadow: 0px 2px ${(props) => props.bg};        
+    box-shadow: 0px -3px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};        
 `
 let LeftCursorButton = styled(ScreenCursorNavButton)`
-    width: 1.5em;
     height: 3em;  
+    width: 1.5em;
     border-radius: 150% 150% 135% 135%;   
-    box-shadow: 2px 1px ${(props) => props.bg};   
-
-    ${(props) => props.isClicked && `animation: ${LeftButtonPressedAnimation} .1s ease-in-out`}; 
+    box-shadow: 3px 0px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};   
 `
 //Default Triangle points right
 let Triangle = styled.div`
@@ -97,25 +83,45 @@ export default (props) => {
     return (
         <Group>
             <ButtonWrapper style={{top:0, left:"50%", transform: "translateX(-50%)"}}>
-                <UpCursorButton bg={"#3d34e6"} data-buttonType={"navigation"} onClick={props.onClick} >
+                <UpCursorButton
+                    bg={"#3d34e6"}
+                    data-buttonType={"navigation"}
+                    onClick={props.onClick}
+                    direction={"up"}
+                >
                     <Triangle direction={"up"} />
                 </UpCursorButton>
             </ButtonWrapper>
 
             <ButtonWrapper style={{top:"50%", right: 0, transform: "translateY(-50%)"}}>
-                <RightCursorButton bg={"#3d34e6"} data-buttonType={"navigation"} onClick={props.onClick} >
+                <RightCursorButton
+                    bg={"#3d34e6"}
+                    data-buttonType={"navigation"}
+                    onClick={props.onClick}
+                    direction={"right"}
+                >
                     <Triangle direction={"right"} />
                 </RightCursorButton>
             </ButtonWrapper>
 
             <ButtonWrapper style={{bottom:0, left:"50%", transform: "translateX(-50%)"}}>
-                <DownCursorButton bg={"#3d34e6"} data-buttonType={"navigation"} onClick={props.onClick} >
+                <DownCursorButton
+                    bg={"#3d34e6"}
+                    data-buttonType={"navigation"}
+                    onClick={props.onClick}
+                    direction={"down"}
+                >
                     <Triangle direction={"down"} />
                 </DownCursorButton>
             </ButtonWrapper>
 
             <ButtonWrapper style={{top:"50%", left: 0, transform: "translateY(-50%)"}}>
-                <LeftCursorButton bg={"#3d34e6"} data-buttonType={"navigation"} onClick={props.onClick} >
+                <LeftCursorButton
+                    bg={"#3d34e6"}
+                    data-buttonType={"navigation"}
+                    onClick={props.onClick}
+                    direction={"left"}
+                >
                     <Triangle direction={"left"} />
                 </LeftCursorButton>
             </ButtonWrapper>
