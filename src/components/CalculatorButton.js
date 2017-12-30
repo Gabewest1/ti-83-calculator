@@ -1,19 +1,8 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
+import colorer from 'colorer'
 
-let boxShadow = "1px 4px #353333"
-
-let ButtonPressedAnimation = keyframes`
-    50% {
-        box-shadow: 0 2px black;
-        top: 3px;
-    }
-    100% {
-        box-shadow: 1px 3px ${(props) => props.bg};
-        top: 0px;
-    }
-`
-let Button = styled.button`
+const Button = styled.button`
     font-size: inherit;
     position: relative;
     display: flex;
@@ -29,11 +18,11 @@ let Button = styled.button`
     min-width: 3.6em;
     outline: none;
     margin: 0 5px;
-    box-shadow: 0px 3px ${(props) => props.bg};
+    box-shadow: 0px 3px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};
 
     &:active {
-        box-shadow: 0px 0px ${(props) => props.bg};
-        top: 1px;        
+        box-shadow: 0px 0px ${({ bg }) => bg ? colorer(bg).light(-30) : ""};
+        top: 3px;        
     }
 `
 
