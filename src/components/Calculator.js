@@ -44,7 +44,7 @@ let EmptySpace = styled(CalculatorButton)`
 export default class Calculator extends React.Component {  
     render() {
         let yellow = "#eaca54"
-        let black = "#1d1d1d"
+        let black = "rgb(29, 29, 29)"
         let teal = "#4dc6b4"
         let blue = "#3d34e6"
         let white = "#ffffff"
